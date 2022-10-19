@@ -1,19 +1,12 @@
-
-# Windows and OSX Specific System Files
-.DS_Store
-*.swp
-ehthumbs.db
-Thumbs.db
-Icon\?
-
-# Tool and Project Meta: Node, Composer, PHPStorm, VSCode, Vagrant, Yarn
 /node_modules
+/public/hot
+/public/storage
+/storage/*.key
 /vendor
-/.idea
-/.vscode
-/.vagrant
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
 npm-debug.log
 yarn-error.log
-.env
-
-nbproject/
