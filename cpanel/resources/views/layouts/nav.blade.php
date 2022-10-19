@@ -163,7 +163,7 @@
 
                 @if (Auth::user()->isTeacher() or Auth::user()->isAdmin())
                     <li>
-                        <a href="add-plan.php"><i class="fa fa-table fa-fw"></i> الخطة الاسبوعية</a>
+                        <a href="{{route('schedual.create')}}"><i class="fa fa-table fa-fw"></i> الخطة الاسبوعية</a>
                     </li>
                 @endif
 

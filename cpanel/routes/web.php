@@ -30,4 +30,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('homework', HomeworkController::class)->except(['update', 'edit']);
     Route::resource('admin', AdminController::class)->except(['update', 'edit', 'show']);;
     Route::resource('activity', ActivityController::class)->except(['update', 'edit', 'show']);;
+    Route::resource('schedual', SchedualController::class)->except(['update', 'edit', 'show']);;
 });
