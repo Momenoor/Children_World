@@ -23,7 +23,8 @@
 
 <body>
     <div id="wrapper">
-        @include('layouts.nav')
+        <?php $prefix = Auth::user()->role_key; ?>
+        @include("pages.{$prefix}.nav")
 
         <main>
             <div id="page-wrapper">

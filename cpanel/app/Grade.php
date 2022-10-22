@@ -25,4 +25,13 @@ class Grade extends Model
     {
         return $this->hasMany(Homework::class);
     }
+
+    public function scheduals()
+    {
+        return $this->hasMany(Schedual::class);
+    }
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
 }

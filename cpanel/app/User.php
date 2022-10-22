@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use ReflectionClass;
 
 class User extends Authenticatable
 {
@@ -82,5 +83,15 @@ class User extends Authenticatable
             static::STUDENT => 'طالب',
         ];
         return $role[$this->role];
+    }
+
+    public function getRoleKeyAttribute()
+    {
+        return strtolower(array_search(
+            $this->role,
+            (new ReflectionClass(self::class))
+                ->getConstants(),
+            false
+        ));
     }
 }

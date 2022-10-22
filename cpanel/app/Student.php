@@ -50,4 +50,8 @@ class Student extends Model
         return $this->born_at->age;
     }
 
+    public function rates(){
+        return $this->hasMany(Rate::class);
+    }
+
 }
