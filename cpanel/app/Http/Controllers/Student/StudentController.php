@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Teacher;
+namespace App\Http\Controllers\Student;
 
 use App\Grade;
 use App\Http\Controllers\Controller;
@@ -20,9 +20,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::where('grade_id', Auth::user()->teacher->grade->id)->with(['user', 'rates'])->paginate(10);
+        $students = Student::where('grade_id', Auth::user()->student->grade->id)->with(['user', 'rates'])->paginate(10);
 
-        return view('pages.teacher.student.index', compact('students'));
+        return view('pages.student.student.index', compact('students'));
     }
 
     /**
@@ -32,8 +32,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        $grade = Auth::user()->teacher->grade;
-        return view('pages.teacher.student.create', compact('grade'));
+        $grade = Auth::user()->student->grade;
+        return view('pages.student.student.create', compact('grade'));
     }
 
     /**
@@ -51,7 +51,7 @@ class StudentController extends Controller
             'students.phone' => 'required',
             'students.born_at' => 'required|date',
         ]);
-        $validated['students']['grade_id'] = Auth::user()->teacher->grade->id;
+        $validated['students']['grade_id'] = Auth::user()->student->grade->id;
 
         DB::transaction(function () use ($validated) {
             $user = User::create(array_merge($validated['users'], ['role' => User::STUDENT]));
@@ -59,7 +59,7 @@ class StudentController extends Controller
             $user->student()->save($student);
         });
 
-        return redirect()->route('teacher.student.index')->with(
+        return redirect()->route('student.student.index')->with(
             [
                 'message' => [
                     'type' => 'success',
@@ -77,7 +77,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('pages.teacher.student.show', compact('student'));
+        return view('pages.student.student.show', compact('student'));
     }
 
     /**
@@ -88,7 +88,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('pages.teacher.student.edit', compact('student'));
+        return view('pages.student.student.edit', compact('student'));
     }
 
     /**
@@ -114,14 +114,14 @@ class StudentController extends Controller
             'students.born_at' => 'required|date',
         ]);
 
-        $validated['students']['grade_id'] = Auth::user()->teacher->grade->id;
+        $validated['students']['grade_id'] = Auth::user()->student->grade->id;
 
         DB::transaction(function () use ($validated, $student) {
             $student->update($validated['students']);
             $student->user()->update($validated['users']);
         });
 
-        return redirect()->route('teacher.student.index')->with(
+        return redirect()->route('student.student.index')->with(
             [
                 'message' => [
                     'type' => 'success',
@@ -152,7 +152,7 @@ class StudentController extends Controller
         $user = $student->user();
         $student->delete();
         $user->delete();
-        return redirect()->route('teacher.student.index')->with(
+        return redirect()->route('student.student.index')->with(
             [
                 'message' => [
                     'type' => 'warning',
@@ -165,6 +165,6 @@ class StudentController extends Controller
     public function byGrade(Grade $grade)
     {
         $students = $grade->students()->paginate(10);
-        return view('pages.teacher.student.index', compact('students', 'grade'));
+        return view('pages.student.student.index', compact('students', 'grade'));
     }
 }

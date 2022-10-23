@@ -13,9 +13,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style="height: 50px">
                     النشاطات
-                    <span class="pull-left"><a href="{{ route('teacher.activity.create') }}" class="btn btn-primary btn-sm"><i
-                                class="fa fa-plus"></i> إضافة نشاط
-                            جديد</a>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
@@ -63,7 +60,6 @@
                                     <th class="text-right">اسم المستخدم</th>
                                     <th class="text-right">البريد الالكتروني</th>
                                     <th class="text-right">الدور</th>
-                                    <th class="text-right">#</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,19 +72,6 @@
                                                 class="text-success">{{ $activity->start_date->format('d-m-Y') }}</span>
                                             - <i class="fa fa-calendar-o"></i> <span
                                                 class="text-warning">{{ $activity->end_date->format('d-m-Y') }}</span></td>
-                                        <td>
-                                            <form action="{{ route('teacher.activity.destroy', $activity) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <p>
-                                                    <button class="btn btn-sm btn-social btn-danger deleteBtn"
-                                                        type="button">
-                                                        <i class="fa fa-times"></i> حذف
-                                                    </button>
-                                                </p>
-                                            </form>
-                                        </td>
-                                    </tr>
                                 @endforeach
                             </tbody>
 
@@ -99,15 +82,3 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        window.addEventListener('load', function() {
-            $('.deleteBtn').on('click', function(e) {
-                var ok = confirm('هل أنت متأكد من حذف السجل؟');
-                if (ok) {
-                    $(this).parents('form').submit();
-                }
-            });
-        });
-    </script>
-@endpush

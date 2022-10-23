@@ -19,8 +19,8 @@ class RateController extends Controller
         $rates = Rate::where('teacher_id', auth()->user()->teacher->id)
             ->with('teacher', 'grade', 'student')
             ->groupBy('date')
-            ;
-        dd($rates->get());
+            ->get();
+
         return view('pages.teacher.rate.index', compact('rates'));
     }
 
@@ -53,6 +53,7 @@ class RateController extends Controller
                 'rate.*'    => 'required',
             ]
         );
+
         foreach ($validated['rate'] as $key => $value) {
             $rates[] = [
                 'date' => $validated['date'],
@@ -63,7 +64,7 @@ class RateController extends Controller
             ];
         }
 
-        Rate::createMany($rates);
+        auth()->user()->teacher->rates()->createMany($rates);
 
         return redirect()->route('teacher.rate.index')->with([
             'message' => [
@@ -81,7 +82,15 @@ class RateController extends Controller
      */
     public function show(Rate $rate)
     {
-        //
+        abort_if(auth()->user()->teacher->id != $rate->teacher_id, 403);
+
+        $rates = Rate::where([
+            'date' => $rate->date,
+            'teacher_id' => $rate->teacher_id,
+            'grade_id' => $rate->grade_id,
+        ])->get();
+
+        return view('pages.teacher.rate.show', compact('rates'));
     }
 
     /**

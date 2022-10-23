@@ -33,7 +33,7 @@ class AdminController extends Controller
 
         User::create($validated);
 
-        return view('home')
+        return redirect()->route('admin.admin')
             ->with([
                 'message' => [
                     'type' => 'success',
@@ -42,7 +42,7 @@ class AdminController extends Controller
             ]);
     }
 
-    public function destroy(User $user){
-
+    public function destroy(User $user)
+    {
     }
 }

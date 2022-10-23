@@ -16,6 +16,7 @@ class VerifyRoleRedirect
      */
     public function handle($request, Closure $next)
     {
+
         if (!$this->isRouteInCorrectPrefix()) {
 
             $uri = $this->getCorrectRouteAfterPrefixChecked();
@@ -27,7 +28,7 @@ class VerifyRoleRedirect
 
     protected function isRouteInCorrectPrefix()
     {
-        return request()->route()->getPrefix() == '/' . Auth::user()->role_key;
+        return request()->route()->getPrefix() ==  Auth::user()->role_key;
     }
 
     protected function getCorrectRouteAfterPrefixChecked()

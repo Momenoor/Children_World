@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <a class="navbar-brand" href="index.php">روضة عالم الأطفال</a>
@@ -98,88 +97,21 @@
         <div class="sidebar-nav navbar-collapse ">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="{{ route('home') }}" class="active"><i class="fa fa-dashboard fa-fw"></i> لوحة التحكم</a>
+                    <a href="{{ route('student.home') }}" class="active"><i class="fa fa-dashboard fa-fw"></i> لوحة التحكم</a>
                 </li>
-
-                @if (Auth::user()->isAdmin())
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> الصفوف<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{ route('grade.index') }}">جميع الصفوف</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('grade.create') }}">اضافة صف جديد</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                @endif
-
-                @if (Auth::user()->isAdmin())
-                    <li>
-                        <a href="#"><i class="fa fa-graduation-cap"></i> الطلاب<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{ route('student.index') }}">جميع الطلاب</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('student.create') }}">اضافة طالب جديد</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-
-                    </li>
-                @endif
-
-                @if (Auth::user()->isAdmin())
-                    <li>
-                        <a href="#"><i class="fa fa-users"></i> المعلمات<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{ route('teacher.index') }}">جميع المعلمات</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('teacher.create') }}">اضافة معلمة جديدة</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                @endif
-
-                @if (Auth::user()->isTeacher() or Auth::user()->isAdmin())
-                    <li>
-                        <a href="#"><i class="fa fa-pencil fa-fw"></i></i> الواجبات<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{ route('homework.index') }}">جميع الواجبات</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('homework.create') }}">اضافة واجب جديد</a>
-                            </li>
-                        </ul>
-                    </li>
-                @endif
-
-                @if (Auth::user()->isTeacher() or Auth::user()->isAdmin())
-                    <li>
-                        <a href="{{route('schedual.create')}}"><i class="fa fa-table fa-fw"></i> الخطة الاسبوعية</a>
-                    </li>
-                @endif
 
                 <li>
-                    <a href="{{ route('activity.index') }}"><i class="fa fa-edit fa-fw"></i> نشاطات</a>
+                    <a href="{{ route('student.homework.index') }}"><i class="fa fa-pencil fa-fw"></i></i> الواجبات<span
+                            class="fa arrow"></span></a>
                 </li>
 
-                @if (Auth::user()->isAdmin())
-                    <li>
-                        <a href="{{ route('admin.index') }}"><i class="fa fa-user fa-fw"></i> قائمة المستخدمين </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.create') }}"><i class="fa fa-user-plus fa-fw"></i> مدير اضافي </a>
-                    </li>
-                @endif
+                <li>
+                    <a href="{{ route('student.schedual.create') }}"><i class="fa fa-table fa-fw"></i> الخطة الاسبوعية</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('student.activity.index') }}"><i class="fa fa-edit fa-fw"></i> نشاطات</a>
+                </li>
                 <!-- /.nav-second-level -->
             </ul>
         </div>

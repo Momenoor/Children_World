@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::middleware('auth')->get('/', function () {
+
+/* Route::middleware('auth')->get('/', function () {
     return redirect()->to('/admin');
-});
+}); */
+
 Route::middleware(['auth', 'role'])->group(function () {
 
     Route::prefix('admin/')->group(function () {
@@ -39,9 +42,7 @@ Route::middleware(['auth', 'role'])->group(function () {
         Route::resource('schedual', Admin\SchedualController::class, ['as' => 'admin'])->except(['update', 'edit', 'show']);
         Route::resource('rate', Admin\RateController::class, ['as' => 'admin'])->only(['index', 'destroy']);
     });
-});
 
-Route::middleware(['auth', 'role'])->group(function () {
     Route::prefix('teacher/')->group(function () {
         Route::get('/', Teacher\HomeController::class)->name('teacher.homepage');
         Route::get('home', Teacher\HomeController::class)->name('teacher.home');
@@ -55,5 +56,15 @@ Route::middleware(['auth', 'role'])->group(function () {
         Route::resource('activity', Teacher\ActivityController::class, ['as' => 'teacher'])->except(['update', 'edit', 'show']);
         Route::resource('schedual', Teacher\SchedualController::class, ['as' => 'teacher'])->except(['update', 'edit', 'show']);
         Route::resource('rate', Teacher\RateController::class, ['as' => 'teacher'])->except(['update', 'edit']);
+    });
+
+    Route::prefix('student/')->group(function () {
+        Route::get('/', Student\HomeController::class)->name('student.homepage');
+        Route::get('home', Student\HomeController::class)->name('student.home');
+        Route::get('dashboard', Student\HomeController::class)->name('student.dashboard');
+        Route::resource('answer', Student\AnswerController::class, ['as' => 'student'])->except(['edit', 'update', 'index']);
+        Route::resource('homework', Student\HomeworkController::class, ['as' => 'student'])->except(['update', 'edit']);
+        Route::resource('activity', Student\ActivityController::class, ['as' => 'student'])->except(['update', 'edit', 'show']);
+        Route::resource('schedual', Student\SchedualController::class, ['as' => 'student'])->except(['update', 'edit', 'show']);
     });
 });
