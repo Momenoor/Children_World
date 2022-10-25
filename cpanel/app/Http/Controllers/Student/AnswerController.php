@@ -37,9 +37,31 @@ class AnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Homework $homework)
     {
-        //
+        $validated = $request->validate([
+            'answer' => 'required|image',
+        ]);
+
+        $validated['answer'] = $request->file('answer')->store('public/answers');
+
+
+        $data = [
+            'answer' => $validated['answer'],
+            'homework_id' => $homework->id,
+            'grade_id' => $homework->grade->id,
+            'teacher_id' => $homework->teacher->id,
+            'student_id' => auth()->user()->student->id,
+        ];
+
+        Answer::create($data);
+
+        return redirect()->route('student.homework.index')->with([
+            'message' => [
+                'type' => 'success',
+                'text' => 'تم حل الواجب بنجاح'
+            ]
+        ]);
     }
 
     /**
@@ -85,17 +107,5 @@ class AnswerController extends Controller
     public function destroy(Answer $answer)
     {
         //
-    }
-
-    public function byHomework(Homework $homework)
-    {
-        if (Auth::user()->isStudent()) {
-            $answer = Answer::where('homework_id', $homework->id)->where('student_id', Auth::user()->id)->get();
-            if (count($answer) < 1) {
-                return redirect()->route('answer.create', $homework);
-            }
-        }
-        $answers = $homework->answers;
-        return view('pages.student.answer.index', compact('answers', 'homework'));
     }
 }

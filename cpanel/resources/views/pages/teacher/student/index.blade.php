@@ -36,7 +36,7 @@
                                         <td>{{ $student->user->name }}</td>
                                         <td>{{ $student->born_at->format('d-m-Y') }} ({{ $student->age }} عام)</a></td>
                                         <td>{{ $student->phone }} </td>
-                                        <td>{{ $student->rates->avg('rate') }} %</td>
+                                        <td>{{ round($student->rates->avg('rate'), 2) }} %</td>
                                         <td style="width: 260px">
                                             <form action="{{ route('teacher.student.destroy', $student) }}" method="POST">
                                                 @csrf

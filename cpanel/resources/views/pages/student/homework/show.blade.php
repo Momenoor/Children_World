@@ -57,19 +57,16 @@
                             <div class="form-group">
                                 <label class="control-label" for="name">الواجب</label>
                                 <p class="form-control-static"><a href="{{ asset("/storage/$homework->file") }}"
-                                        target="_blank"><img  class="img-thumbnail" src="{{ asset("/storage/$homework->file") }}"
+                                        target="_blank"><img class="img-thumbnail"
+                                            src="{{ asset("/storage/$homework->file") }}"
                                             alt="homework{{ $homework->subject }}" width="350px"></a></p>
                             </div>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
                     </div>
                     <!-- /.row (nested) -->
-                    <div class="form-group">
-                        <label class="control-label" for="name">الحلول</label>
-                        @include('pages.answer.table', ['answers' => $homework->answers])
-                    </div>
                     <p>
-                        <a href="{{ route('homework.index') }}" class="btn btn-primary">العودة</a>
+                        <a href="{{ route('student.homework.index') }}" class="btn btn-primary">العودة</a>
                     </p>
                 </div>
                 <!-- /.panel-body -->

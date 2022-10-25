@@ -22,9 +22,11 @@ Auth::routes();
     return redirect()->to('/admin');
 }); */
 
-Route::middleware(['auth', 'role'])->group(function () {
-
-    Route::prefix('admin/')->group(function () {
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
+    Route::prefix('admin/')->middleware('role:admin')->group(function () {
         Route::get('/', Admin\HomeController::class)->name('admin.homepage');
         Route::get('home', Admin\HomeController::class)->name('admin.home');
         Route::get('dashboard', Admin\HomeController::class)->name('admin.dashboard');
@@ -43,7 +45,7 @@ Route::middleware(['auth', 'role'])->group(function () {
         Route::resource('rate', Admin\RateController::class, ['as' => 'admin'])->only(['index', 'destroy']);
     });
 
-    Route::prefix('teacher/')->group(function () {
+    Route::prefix('teacher/')->middleware('role:teacher')->group(function () {
         Route::get('/', Teacher\HomeController::class)->name('teacher.homepage');
         Route::get('home', Teacher\HomeController::class)->name('teacher.home');
         Route::get('dashboard', Teacher\HomeController::class)->name('teacher.dashboard');
@@ -58,11 +60,12 @@ Route::middleware(['auth', 'role'])->group(function () {
         Route::resource('rate', Teacher\RateController::class, ['as' => 'teacher'])->except(['update', 'edit']);
     });
 
-    Route::prefix('student/')->group(function () {
+    Route::prefix('student/')->middleware('role:student')->group(function () {
         Route::get('/', Student\HomeController::class)->name('student.homepage');
         Route::get('home', Student\HomeController::class)->name('student.home');
         Route::get('dashboard', Student\HomeController::class)->name('student.dashboard');
-        Route::resource('answer', Student\AnswerController::class, ['as' => 'student'])->except(['edit', 'update', 'index']);
+        Route::get('answer/{homework}/create', [App\Http\Controllers\Student\AnswerController::class, 'create'])->name('student.answer.create');
+        Route::post('answer/{homework}/store', [App\Http\Controllers\Student\AnswerController::class, 'store'])->name('student.answer.store');
         Route::resource('homework', Student\HomeworkController::class, ['as' => 'student'])->except(['update', 'edit']);
         Route::resource('activity', Student\ActivityController::class, ['as' => 'student'])->except(['update', 'edit', 'show']);
         Route::resource('schedual', Student\SchedualController::class, ['as' => 'student'])->except(['update', 'edit', 'show']);

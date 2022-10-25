@@ -21,11 +21,13 @@
                         <div class="col-lg-6 pull-right">
                             <div class="form-group col-lg-6">
                                 <label class="control-label" for="date">الشهر</label>
-                                <p id="month" name="month" class="form-control-static">{{$rates[0]->date->translatedFormat('M')}}</p>
+                                <p id="month" name="month" class="form-control-static">
+                                    {{ $rates[0]->date->translatedFormat('M') }}</p>
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="control-label" for="date">السنة</label>
-                                <p id="year" name="year" class="form-control-static">{{$rates[0]->date->format('Y')}}</p>
+                                <p id="year" name="year" class="form-control-static">
+                                    {{ $rates[0]->date->format('Y') }}</p>
                             </div>
                             <table class="table table-borderd table-hover">
                                 <thead>
@@ -43,7 +45,7 @@
                                         <tr>
                                             <td>{{ $rate->student->user->name }}</td>
                                             <td>
-                                                {{$rate->rate}} %
+                                                {{ round($rate->rate, 2) }} %
                                             </td>
                                         </tr>
                                     @endforeach

@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model
 {
 
+    protected $fillable = [
+        'answer',
+        'homework_id',
+        'teacher_id',
+        'student_id',
+        'grade_id',
+    ];
+
+
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);

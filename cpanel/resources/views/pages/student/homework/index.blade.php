@@ -27,9 +27,8 @@
                                     <th class="text-right">العنوان</th>
                                     <th class="text-right">الايضاح</th>
                                     <th class="text-right">المعلمة</th>
-                                    <th class="text-right">الصف</th>
                                     <th class="text-right">التاريخ</th>
-                                    <th class="text-right">ردود الطلاب</th>
+                                    <th class="text-right">الحلول</th>
                                     <th class="text-right">#</th>
                                 </tr>
                             </thead>
@@ -41,29 +40,27 @@
                                         <td>{{ $homework->teacher->user->name }}</td>
                                         <td>{{ $homework->grade->name }}</td>
                                         <td><i class="fa fa-calendar"></i> {{ $homework->created_at->format('d-m-Y') }}</td>
-                                        <td><a href="{{ route('homework.answer', $homework) }}">عرض إجابات
-                                                ({{ $homework->answers_count }})
-                                                طالب قام بالحل</a>
+                                        <td>
+                                            @if ($homework->answers()->exists())
+                                                <a href="{{ asset("/storage/".$homework->answers->first()->answer) }}"
+                                                    target="_blank">
+                                                    <img class="img-thumbnail"
+                                                        src="{{ asset("/storage/".$homework->answers->first()->answer) }}"
+                                                        alt="homework{{ $homework->subject }}" width="150px">
+                                                </a>
+                                            @else
+                                                <a href="{{ route('student.answer.create', $homework) }}">
+                                                    حل الواجب
+                                                </a>
+                                            @endif
                                         </td>
                                         <td style="width: 260px">
-                                            <form action="{{ route('homework.destroy', $homework) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <p>
-                                                    <button class="btn btn-sm btn-social btn-danger deleteBtn"
-                                                        type="button">
-                                                        <i class="fa fa-times"></i> حذف
-                                                    </button>
-                                                    {{-- <a class="btn btn-sm btn-social btn-warning"
-                                                        href="{{ route('homework.edit', $homework) }}">
-                                                        <i class="fa fa-pencil-square-o"></i> تعديل
-                                                    </a> --}}
-                                                    <a class="btn btn-sm btn-social btn-primary"
-                                                        href="{{ route('homework.show', $homework) }}">
-                                                        <i class="fa fa-eye"></i> عرض
-                                                    </a>
-                                                </p>
-                                            </form>
+
+                                            <a class="btn btn-sm btn-social btn-primary"
+                                                href="{{ route('student.homework.show', $homework) }}">
+                                                <i class="fa fa-eye"></i> عرض
+                                            </a>
+
                                         </td>
                                     </tr>
                                 @endforeach

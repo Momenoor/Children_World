@@ -20,7 +20,7 @@ class HomeworkController extends Controller
     public function index()
     {
 
-        $homeworks = Homework::with(['student', 'grade'])->where('student_id', Auth::user()->student->id)->withCount('answers')->orderBy('created_at', 'DESC')->paginate(20);
+        $homeworks = Homework::with(['teacher', 'grade','answers'])->where('grade_id', Auth::user()->student->grade->id)->withCount('answers')->orderBy('created_at', 'DESC')->paginate(20);
 
         return view('pages.student.homework.index', compact('homeworks'));
     }

@@ -28,7 +28,7 @@ class VerifyRoleRedirect
 
     protected function isRouteInCorrectPrefix()
     {
-        return request()->route()->getPrefix() ==  Auth::user()->role_key;
+        return ltrim(request()->route()->getPrefix(), '/') ==  Auth::user()->role_key;
     }
 
     protected function getCorrectRouteAfterPrefixChecked()
