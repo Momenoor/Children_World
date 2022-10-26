@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use ReflectionClass;
+use Musonza\Chat\Traits\Messageable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Messageable;
 
     /**
      * The attributes that are mass assignable.
