@@ -40,6 +40,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $with = [
+        'student',
+        'teacher',
+    ];
 
     public const ADMIN = 0;
     public const TEACHER = 1;

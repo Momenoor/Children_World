@@ -46,7 +46,7 @@ class TeacherController extends Controller
     {
         $validated = $request->validate([
             'users.name' => 'required|unique:users',
-            'users.email' => 'required|unique:users|email:rfc',
+            'users.email' => 'required|unique:users',
             'users.password' => 'required|confirmed|min:6|max:20',
             'teachers.phone' => 'required',
             'teachers.specialization' => 'required|string',
@@ -108,7 +108,7 @@ class TeacherController extends Controller
             'users.email' => [
                 'required',
                 Rule::unique('users')->ignore($teacher->user_id),
-                'email:rfc'
+
             ],
             'teachers.phone' => 'required',
             'teachers.specialization' => 'required|string',

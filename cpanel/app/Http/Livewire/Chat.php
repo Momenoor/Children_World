@@ -2,21 +2,29 @@
 
 namespace App\Http\Livewire;
 
+use App\User;
 use Livewire\Component;
+use Chat as BaseChat;
 
 class Chat extends Component
 {
-    public $ableToChatWith;
+    public $converesations, $currentParticipation;
     public function render()
     {
-        return view('pages.chat.all');
+        $conversations = BaseChat::conversations()->setParticipant(auth()->user())->conversation->all();
+        dd($conversations);
+        return view('pages.chat.all',compact('conversations'));
     }
 
     public function mount()
     {
 
-        $grade = auth()->user()->teacher->grade;
 
-        $this->ableToChatWith = collect($grade->teachers)->merge(collect($grade->students));
+    }
+
+    public function createConv(User $participation)
+    {
+
+        $conversation = BaseChat::conversation(BaseChat::conversation()->conversation)->makePrivate();
     }
 }

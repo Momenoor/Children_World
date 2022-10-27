@@ -46,7 +46,7 @@ class StudentController extends Controller
     {
         $validated = $request->validate([
             'users.name' => 'required|unique:users',
-            'users.email' => 'required|unique:users|email:rfc',
+            'users.email' => 'required|unique:users',
             'users.password' => 'required|confirmed|min:6|max:20',
             'students.phone' => 'required',
             'students.born_at' => 'required|date',
@@ -108,7 +108,7 @@ class StudentController extends Controller
             'users.email' => [
                 'required',
                 Rule::unique('users')->ignore($student->user_id),
-                'email:rfc'
+
             ],
             'students.phone' => 'required',
             'students.born_at' => 'required|date',

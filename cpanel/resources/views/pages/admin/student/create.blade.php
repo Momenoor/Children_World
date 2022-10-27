@@ -68,7 +68,7 @@
                                         @enderror
                                     </div>
                                     <div class="form-group @error('users.email') has-error @enderror">
-                                        <label class="control-label" for="users.email">البريد الالكتروني</label>
+                                        <label class="control-label" for="users.email">رقم الهوية</label>
                                         <input id="email" type="text" name="users[email]" class="form-control"
                                             value="{{ old('users.email') }}" placeholder="اكتب هنا ..">
                                         @error('users.email')

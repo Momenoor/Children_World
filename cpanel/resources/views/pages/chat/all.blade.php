@@ -1,980 +1,433 @@
-<div class="container app">
-    <div class="row app-one">
-        <div class="col-sm-4 side">
-            <div class="side-one">
-                <div class="row heading">
-                    <div class="col-sm-3 col-xs-3 heading-avatar">
-                        <div class="heading-avatar-icon">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                        </div>
-                    </div>
-                    <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
-                        <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
-                        <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
-                    </div>
-                </div>
-
-                <div class="row searchBox">
-                    <div class="col-sm-12 searchBox-inner">
-                        <div class="form-group has-feedback">
-                            <input id="searchText" type="text" class="form-control" name="searchText"
-                                placeholder="Search">
-                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row sideBar">
-                    @foreach ($ableToChatWith as $toChat)
-                        <div class="row sideBar-body">
-
-                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                                <div class="avatar-icon">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                                </div>
+<div>
+    <div class="main_section">
+        <div class="container">
+            <div class="chat_container">
+                <div class="col-sm-3 chat_sidebar">
+                    <div class="row">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="  search-query form-control" placeholder="Conversation" />
+                                <button class="btn btn-danger" type="button">
+                                    <span class=" glyphicon glyphicon-search"></span>
+                                </button>
                             </div>
-                            <div class="col-sm-9 col-xs-9 sideBar-main">
-                                <div class="row">
-                                    <div class="col-sm-8 col-xs-8 sideBar-name">
-                                        <span class="name-meta">{{ $toChat->user->name }}
+                        </div>
+                        <div class="dropdown all_conversation">
+                            <button class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-weixin" aria-hidden="true"></i>
+                                All Conversations
+                                <span class="caret pull-right"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><a href="#"> All Conversation </a>
+                                    <ul class="sub_menu_ list-unstyled">
+                                        <li><a href="#"> All Conversation </a> </li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                        </div>
+                        <div class="member_list">
+                            <ul class="list-unstyled">
+                                @foreach ($conversations as $conversation)
+
+                                    <li class="right clearfix" wire:click="createConv()">
+                                        <span class="chat-img pull-right">
+                                            <i class="fa fa-3x fa-user-circle"></i>
                                         </span>
+                                        <div class="chat-body clearfix">
+                                            <div class="header_sec">
+                                                <strong class="primary-font">{{ $conversation['conversation']->getParticipants()[0]->name }}</strong> <strong
+                                                    class="pull-left">
+                                                    09:45AM</strong>
+                                            </div>
+                                            <div class="contact_sec">
+                                                <strong
+                                                    class="primary-font">{{ optional($able->teacher)->phone ?? optional($able->student)->phone }}</strong>
+                                                <span class="badge pull-left">3</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--chat_sidebar-->
+
+
+                <div class="col-sm-9 message_section">
+                    <div class="row">
+                        <div class="new_message_head">
+                            <div class="pull-right"><button><i class="fa fa-plus-square-o" aria-hidden="true"></i> New
+                                    Message</button></div>
+                            <div class="pull-left">
+                                <div class="dropdown">
+                                    <button class="dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-cogs" aria-hidden="true"></i> Setting
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenu1">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Logout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--new_message_head-->
+
+                        <div class="chat_area">
+                            <ul class="list-unstyled">
+                                <li class="right clearfix">
+                                    <span class="chat-img1 pull-right">
+                                        <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg"
+                                            alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has
+                                            roots
+                                            in a piece of classical Latin literature from 45 BC, making it over 2000
+                                            years
+                                            old. Richard McClintock, a Latin professor at Hampden-Sydney College in
+                                            Virginia.</p>
+                                        <div class="chat_time pull-left">09:40PM</div>
                                     </div>
-                                    <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                        <span class="time-meta pull-right">18:18
-                                        </span>
+                                </li>
+                                <li class="right clearfix">
+                                    <span class="chat-img1 pull-right">
+                                        <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg"
+                                            alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has
+                                            roots
+                                            in a piece of classical Latin literature from 45 BC, making it over 2000
+                                            years
+                                            old. Richard McClintock, a Latin professor at Hampden-Sydney College in
+                                            Virginia.</p>
+                                        <div class="chat_time pull-left">09:40PM</div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+                                </li>
+                                <li class="right clearfix">
+                                    <span class="chat-img1 pull-right">
+                                        <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg"
+                                            alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has
+                                            roots
+                                            in a piece of classical Latin literature from 45 BC, making it over 2000
+                                            years
+                                            old. Richard McClintock, a Latin professor at Hampden-Sydney College in
+                                            Virginia.</p>
+                                        <div class="chat_time pull-left">09:40PM</div>
+                                    </div>
+                                </li>
+                                <li class="right clearfix admin_chat">
+                                    <span class="chat-img1 pull-left">
+                                        <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg"
+                                            alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has
+                                            roots
+                                            in a piece of classical Latin literature from 45 BC, making it over 2000
+                                            years
+                                            old. Richard McClintock, a Latin professor at Hampden-Sydney College in
+                                            Virginia.</p>
+                                        <div class="chat_time pull-right">09:40PM</div>
+                                    </div>
+                                </li>
+                                <li class="right clearfix admin_chat">
+                                    <span class="chat-img1 pull-left">
+                                        <img src="https://lh6.googleusercontent.com/-y-MY2satK-E/AAAAAAAAAAI/AAAAAAAAAJU/ER_hFddBheQ/photo.jpg"
+                                            alt="User Avatar" class="img-circle">
+                                    </span>
+                                    <div class="chat-body1 clearfix">
+                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has
+                                            roots
+                                            in a piece of classical Latin literature from 45 BC, making it over 2000
+                                            years
+                                            old. Richard McClintock, a Latin professor at Hampden-Sydney College in
+                                            Virginia.</p>
+                                        <div class="chat_time pull-right">09:40PM</div>
+                                    </div>
+                                </li>
 
-            <div class="side-two">
-                <div class="row newMessage-heading">
-                    <div class="row newMessage-main">
-                        <div class="col-sm-2 col-xs-2 newMessage-back">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-sm-10 col-xs-10 newMessage-title">
-                            New Chat
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row composeBox">
-                    <div class="col-sm-12 composeBox-inner">
-                        <div class="form-group has-feedback">
-                            <input id="composeText" type="text" class="form-control" name="searchText"
-                                placeholder="Search People">
-                            <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row compose-sideBar">
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
-                            </div>
+                            </ul>
                         </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row sideBar-body">
-                        <div class="col-sm-3 col-xs-3 sideBar-avatar">
-                            <div class="avatar-icon">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
-                            </div>
-                        </div>
-                        <div class="col-sm-9 col-xs-9 sideBar-main">
-                            <div class="row">
-                                <div class="col-sm-8 col-xs-8 sideBar-name">
-                                    <span class="name-meta">John Doe
-                                    </span>
-                                </div>
-                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
-                                    <span class="time-meta pull-right">18:18
-                                    </span>
-                                </div>
+                        <!--chat_area-->
+                        <div class="message_write">
+                            <textarea class="form-control" placeholder="type a message"></textarea>
+                            <div class="clearfix"></div>
+                            <div class="chat_bottom"><a href="#" class="pull-right upload_btn"><i
+                                        class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                    Add Files</a>
+                                <a href="#" class="pull-left btn btn-success">
+                                    Send</a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="col-sm-8 conversation">
-            <div class="row heading">
-                <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
-                    <div class="heading-avatar-icon">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
-                    </div>
-                </div>
-                <div class="col-sm-8 col-xs-7 heading-name">
-                    <a class="heading-name-meta">John Doe
-                    </a>
-                    <span class="heading-online">Online</span>
-                </div>
-                <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-                    <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
-                </div>
-            </div>
-
-            <div class="row message" id="conversation">
-                <div class="row message-previous">
-                    <div class="col-sm-12 previous">
-                        <a onclick="previous(this)" id="ankitjain28" name="20">
-                            Show Previous Message!
-                        </a>
-                    </div>
-                </div>
-
-                <div class="row message-body">
-                    <div class="col-sm-12 message-main-receiver">
-                        <div class="receiver">
-                            <div class="message-text">
-                                Hi, what are you doing?!
-                            </div>
-                            <span class="message-time pull-right">
-                                Sun
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row message-body">
-                    <div class="col-sm-12 message-main-sender">
-                        <div class="sender">
-                            <div class="message-text">
-                                I am doing nothing man!
-                            </div>
-                            <span class="message-time pull-right">
-                                Sun
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row reply">
-                <div class="col-sm-1 col-xs-1 reply-emojis">
-                    <i class="fa fa-smile-o fa-2x"></i>
-                </div>
-                <div class="col-sm-9 col-xs-9 reply-main">
-                    <textarea class="form-control" rows="1" id="comment"></textarea>
-                </div>
-                <div class="col-sm-1 col-xs-1 reply-recording">
-                    <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
-                </div>
-                <div class="col-sm-1 col-xs-1 reply-send">
-                    <i class="fa fa-send fa-2x" aria-hidden="true"></i>
-                </div>
+                <!--message_section-->
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(function() {
-        $(".heading-compose").click(function() {
-            $(".side-two").css({
-                "left": "0"
-            });
-        });
-
-        $(".newMessage-back").click(function() {
-            $(".side-two").css({
-                "left": "-100%"
-            });
-        });
-    })
-</script>
 <style>
-    /*     html,
-    body,
-    div,
-    span {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        padding: 0;
+    #custom-search-input {
+        background: #e8e6e7 none repeat scroll 0 0;
         margin: 0;
-        box-sizing: border-box;
-    } */
-
-    /*     body {
-        background: url("http://shurl.esy.es/y") no-repeat fixed center;
-        background-size: cover;
-    } */
-
-    .fa-2x {
-        font-size: 1.5em;
+        padding: 10px;
     }
 
-    .app {
-        position: relative;
-        overflow: hidden;
-        top: 19px;
-        height: calc(100% - 38px);
+    #custom-search-input .search-query {
+        background: #fff none repeat scroll 0 0 !important;
+        border-radius: 4px;
+        height: 33px;
+        margin-bottom: 0;
+        paddingright-: 7px;
+        padding-left: 7px;
+    }
+
+    #custom-search-input button {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        border: 0 none;
+        border-radius: 3px;
+        color: #666666;
+        right: auto;
+        margin-bottom: 0;
+        margin-top: 7px;
+        padding: 2px 5px;
+        position: absolute;
+        left: 0;
+        z-index: 9999;
+    }
+
+    .search-query:focus+button {
+        z-index: 3;
+    }
+
+    .all_conversation button {
+        background: #f5f3f3 none repeat scroll 0 0;
+        border: 1px solid #dddddd;
+        height: 38px;
+        text-align: right;
+        width: 100%;
+    }
+
+    .all_conversation i {
+        background: #e9e7e8 none repeat scroll 0 0;
+        border-radius: 100px;
+        color: #636363;
+        font-size: 17px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        width: 30px;
+    }
+
+    .all_conversation .caret {
+        bottom: 0;
         margin: auto;
-        padding: 0;
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
-    }
-
-    .app-one {
-        background-color: #f7f7f7;
-        height: 100%;
-        overflow: hidden;
-        margin: 0;
-        padding: 0;
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
-    }
-
-    .side {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-    }
-
-    .side-one {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-        z-index: 1;
-        position: relative;
-        display: block;
+        position: absolute;
+        left: 15px;
         top: 0;
     }
 
-    .side-two {
+    .all_conversation .dropdown-menu {
+        background: #f5f3f3 none repeat scroll 0 0;
+        border-radius: 0;
+        margin-top: 0;
         padding: 0;
-        margin: 0;
-        height: 100%;
         width: 100%;
-        z-index: 2;
-        position: relative;
-        top: -100%;
-        left: -100%;
-        -webkit-transition: left 0.3s ease;
-        transition: left 0.3s ease;
-
     }
 
-
-    .heading {
-        padding: 10px 16px 10px 15px;
-        margin: 0;
-        height: 60px;
+    .all_conversation ul li {
+        border-bottom: 1px solid #dddddd;
+        line-height: normal;
         width: 100%;
-        background-color: #eee;
-        z-index: 1000;
     }
 
-    .heading-avatar {
-        padding: 0;
-        cursor: pointer;
-
+    .all_conversation ul li a:hover {
+        background: #dddddd none repeat scroll 0 0;
+        color: #333;
     }
 
-    .heading-avatar-icon img {
-        border-radius: 50%;
+    .all_conversation ul li a {
+        color: #333;
+        line-height: 30px;
+        padding: 3px 20px;
+    }
+
+    .member_list .chat-body {
+        margin-right: 47px;
+        margin-top: 0;
+    }
+
+    .top_nav {
+        overflow: visible;
+    }
+
+    .member_list .contact_sec {
+        margin-top: 3px;
+    }
+
+    .member_list li {
+        padding: 6px;
+    }
+
+    .member_list ul {
+        border: 1px solid #dddddd;
+    }
+
+    .chat-img img {
+        height: 34px;
+        width: 34px;
+    }
+
+    .member_list li {
+        border-bottom: 1px solid #dddddd;
+        padding: 6px;
+    }
+
+    .member_list li:last-child {
+        border-bottom: none;
+    }
+
+    .member_list {
+        height: 500px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .sub_menu_ {
+        background: #e8e6e7 none repeat scroll 0 0;
+        right: 100%;
+        max-width: 233px;
+        position: absolute;
+        width: 100%;
+    }
+
+    .sub_menu_ {
+        background: #f5f3f3 none repeat scroll 0 0;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        display: none;
+        right: 100%;
+        margin-right: 0;
+        max-width: 233px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .all_conversation ul li:hover .sub_menu_ {
+        display: block;
+    }
+
+    .new_message_head button {
+        background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+        border: medium none;
+    }
+
+    .new_message_head {
+        background: #f5f3f3 none repeat scroll 0 0;
+        float: right;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 18px 10px;
+        width: 100%;
+    }
+
+    .message_section {
+        border: 1px solid #dddddd;
+    }
+
+    .chat_area {
+        float: right;
+        height: 385px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        width: 100%;
+    }
+
+    .chat_area li {
+        padding: 14px 14px 0;
+    }
+
+    .chat_area li .chat-img1 img {
         height: 40px;
         width: 40px;
     }
 
-    .heading-name {
-        padding: 0 !important;
-        cursor: pointer;
+    .chat_area .chat-body1 {
+        margin-right: 50px;
     }
 
-    .heading-name-meta {
-        font-weight: 700;
-        font-size: 100%;
-        padding: 5px;
-        padding-bottom: 0;
-        text-align: left;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #000;
-        display: block;
+    .chat-body1 p {
+        background: #fbf9fa none repeat scroll 0 0;
+        padding: 10px;
     }
 
-    .heading-online {
-        display: none;
-        padding: 0 5px;
-        font-size: 12px;
-        color: #93918f;
+    .chat_area .admin_chat .chat-body1 {
+        margin-right: 0;
+        margin-left: 50px;
     }
 
-    .heading-compose {
-        padding: 0;
+    .chat_area li:last-child {
+        padding-bottom: 10px;
     }
 
-    .heading-compose i {
-        text-align: center;
-        padding: 5px;
-        color: #93918f;
-        cursor: pointer;
-    }
-
-    .heading-dot {
-        padding: 0;
-        margin-left: 10px;
-    }
-
-    .heading-dot i {
-        text-align: right;
-        padding: 5px;
-        color: #93918f;
-        cursor: pointer;
-    }
-
-    .searchBox {
-        padding: 0 !important;
-        margin: 0 !important;
-        height: 60px;
-        width: 100%;
-    }
-
-    .searchBox-inner {
-        height: 100%;
-        width: 100%;
-        padding: 10px !important;
-        background-color: #fbfbfb;
-    }
-
-
-    /*#searchBox-inner input {
-  box-shadow: none;
-}*/
-
-    .searchBox-inner input:focus {
-        outline: none;
-        border: none;
-        box-shadow: none;
-    }
-
-    .sideBar {
-        padding: 0 !important;
-        margin: 0 !important;
-        background-color: #fff;
-        overflow-y: auto;
-        border: 1px solid #f7f7f7;
-        height: calc(100% - 120px);
-    }
-
-    .sideBar-body {
-        position: relative;
-        padding: 10px !important;
-        border-bottom: 1px solid #f7f7f7;
-        height: 72px;
-        margin: 0 !important;
-        cursor: pointer;
-    }
-
-    .sideBar-body:hover {
-        background-color: #f2f2f2;
-    }
-
-    .sideBar-avatar {
-        text-align: center;
-        padding: 0 !important;
-    }
-
-    .avatar-icon img {
-        border-radius: 50%;
-        height: 49px;
-        width: 49px;
-    }
-
-    .sideBar-main {
-        padding: 0 !important;
-    }
-
-    .sideBar-main .row {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    .sideBar-name {
-        padding: 10px !important;
-    }
-
-    .name-meta {
-        font-size: 100%;
-        padding: 1% !important;
-        text-align: left;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #000;
-    }
-
-    .sideBar-time {
-        padding: 10px !important;
-    }
-
-    .time-meta {
-        text-align: right;
-        font-size: 12px;
-        padding: 1% !important;
-        color: rgba(0, 0, 0, .4);
-        vertical-align: baseline;
-    }
-
-    /*New Message*/
-
-    .newMessage {
-        padding: 0 !important;
-        margin: 0 !important;
-        height: 100%;
-        position: relative;
-        left: -100%;
-    }
-
-    .newMessage-heading {
-        padding: 10px 16px 10px 15px !important;
-        margin: 0 !important;
-        height: 100px;
-        width: 100%;
-        background-color: #00bfa5;
-        z-index: 1001;
-    }
-
-    .newMessage-main {
-        padding: 10px 16px 0 15px !important;
-        margin: 0 !important;
-        height: 60px;
-        margin-top: 30px !important;
-        width: 100%;
-        z-index: 1001;
-        color: #fff;
-    }
-
-    .newMessage-title {
-        font-size: 18px;
-        font-weight: 700;
-        padding: 10px 5px !important;
-    }
-
-    .newMessage-back {
-        text-align: center;
-        vertical-align: baseline;
-        padding: 12px 5px !important;
-        display: block;
-        cursor: pointer;
-    }
-
-    .newMessage-back i {
-        margin: auto !important;
-    }
-
-    .composeBox {
-        padding: 0 !important;
-        margin: 0 !important;
-        height: 60px;
-        width: 100%;
-    }
-
-    .composeBox-inner {
-        height: 100%;
-        width: 100%;
-        padding: 10px !important;
-        background-color: #fbfbfb;
-    }
-
-    .composeBox-inner input:focus {
-        outline: none;
-        border: none;
-        box-shadow: none;
-    }
-
-    .compose-sideBar {
-        padding: 0 !important;
-        margin: 0 !important;
-        background-color: #fff;
-        overflow-y: auto;
-        border: 1px solid #f7f7f7;
-        height: calc(100% - 160px);
-    }
-
-    /*Conversation*/
-
-    .conversation {
-        padding: 0 !important;
-        margin: 0 !important;
-        height: 100%;
-        /*width: 100%;*/
-        border-left: 1px solid rgba(0, 0, 0, .08);
-        /*overflow-y: auto;*/
-    }
-
-    .message {
-        padding: 0 !important;
-        margin: 0 !important;
-        background: url("w.jpg") no-repeat fixed center;
-        background-size: cover;
-        overflow-y: auto;
-        border: 1px solid #f7f7f7;
-        height: calc(100% - 120px);
-    }
-
-    .message-previous {
-        margin: 0 !important;
-        padding: 0 !important;
-        height: auto;
-        width: 100%;
-    }
-
-    .previous {
-        font-size: 15px;
-        text-align: center;
-        padding: 10px !important;
-        cursor: pointer;
-    }
-
-    .previous a {
-        text-decoration: none;
-        font-weight: 700;
-    }
-
-    .message-body {
-        margin: 0 !important;
-        padding: 0 !important;
-        width: auto;
-        height: auto;
-    }
-
-    .message-main-receiver {
-        /*padding: 10px 20px;*/
-        max-width: 60%;
-    }
-
-    .message-main-sender {
-        padding: 3px 20px !important;
-        margin-left: 40% !important;
-        max-width: 60%;
-    }
-
-    .message-text {
-        margin: 0 !important;
-        padding: 5px !important;
-        word-wrap: break-word;
-        font-weight: 200;
-        font-size: 14px;
-        padding-bottom: 0 !important;
-    }
-
-    .message-time {
-        margin: 0 !important;
-        margin-left: 50px !important;
-        font-size: 12px;
-        text-align: right;
-        color: #9a9a9a;
-
-    }
-
-    .receiver {
-        width: auto !important;
-        padding: 4px 10px 7px !important;
-        border-radius: 10px 10px 10px 0;
-        background: #ffffff;
-        font-size: 12px;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-        word-wrap: break-word;
-        display: inline-block;
-    }
-
-    .sender {
+    .message_write {
+        background: #f5f3f3 none repeat scroll 0 0;
         float: right;
-        width: auto !important;
-        background: #dcf8c6;
-        border-radius: 10px 10px 0 10px;
-        padding: 4px 10px 7px !important;
-        font-size: 12px;
-        text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-        display: inline-block;
-        word-wrap: break-word;
-    }
-
-
-    /*Reply*/
-
-    .reply {
-        height: 60px;
+        padding: 15px;
         width: 100%;
-        background-color: #f5f1ee;
-        padding: 10px 5px 10px 5px !important;
-        margin: 0 !important;
-        z-index: 1000;
     }
 
-    .reply-emojis {
-        padding: 5px !important;
+    .message_write textarea.form-control {
+        height: 70px;
+        padding: 10px;
     }
 
-    .reply-emojis i {
-        text-align: center;
-        padding: 5px 5px 5px 5px !important;
-        color: #93918f;
-        cursor: pointer;
-    }
-
-    .reply-recording {
-        padding: 5px !important;
-    }
-
-    .reply-recording i {
-        text-align: center;
-        padding: 5px !important;
-        color: #93918f;
-        cursor: pointer;
-    }
-
-    .reply-send {
-        padding: 5px !important;
-    }
-
-    .reply-send i {
-        text-align: center;
-        padding: 5px !important;
-        color: #93918f;
-        cursor: pointer;
-    }
-
-    .reply-main {
-        padding: 2px 5px !important;
-    }
-
-    .reply-main textarea {
+    .chat_bottom {
+        float: right;
+        margin-top: 13px;
         width: 100%;
-        resize: none;
-        overflow: hidden;
-        padding: 5px !important;
-        outline: none;
-        border: none;
-        text-indent: 5px;
-        box-shadow: none;
-        height: 100%;
-        font-size: 16px;
     }
 
-    .reply-main textarea:focus {
-        outline: none;
-        border: none;
-        text-indent: 5px;
-        box-shadow: none;
+    .upload_btn {
+        color: #777777;
     }
 
-    @media screen and (max-width: 700px) {
-        .app {
-            top: 0;
-            height: 100%;
-        }
+    .sub_menu_>li a,
+    .sub_menu_>li {
+        float: right;
+        width: 100%;
+    }
 
-        .heading {
-            height: 70px;
-            background-color: #009688;
-        }
+    .member_list li:hover {
+        background: #428bca none repeat scroll 0 0;
+        color: #fff;
+        cursor: pointer;
+    }
 
-        .fa-2x {
-            font-size: 2.3em !important;
-        }
+    .chat_container {
+        margin-top: 25px;
+    }
 
-        .heading-avatar {
-            padding: 0 !important;
-        }
-
-        .heading-avatar-icon img {
-            height: 50px;
-            width: 50px;
-        }
-
-        .heading-compose {
-            padding: 5px !important;
-        }
-
-        .heading-compose i {
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .heading-dot {
-            padding: 5px !important;
-            margin-left: 10px !important;
-        }
-
-        .heading-dot i {
-            color: #fff;
-            cursor: pointer;
-        }
-
-        .sideBar {
-            height: calc(100% - 130px);
-        }
-
-        .sideBar-body {
-            height: 80px;
-        }
-
-        .sideBar-avatar {
-            text-align: left;
-            padding: 0 8px !important;
-        }
-
-        .avatar-icon img {
-            height: 55px;
-            width: 55px;
-        }
-
-        .sideBar-main {
-            padding: 0 !important;
-        }
-
-        .sideBar-main .row {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-        .sideBar-name {
-            padding: 10px 5px !important;
-        }
-
-        .name-meta {
-            font-size: 16px;
-            padding: 5% !important;
-        }
-
-        .sideBar-time {
-            padding: 10px !important;
-        }
-
-        .time-meta {
-            text-align: right;
-            font-size: 14px;
-            padding: 4% !important;
-            color: rgba(0, 0, 0, .4);
-            vertical-align: baseline;
-        }
-
-        /*Conversation*/
-        .conversation {
-            padding: 0 !important;
-            margin: 0 !important;
-            height: 100%;
-            /*width: 100%;*/
-            border-left: 1px solid rgba(0, 0, 0, .08);
-            /*overflow-y: auto;*/
-        }
-
-        .message {
-            height: calc(100% - 140px);
-        }
-
-        .reply {
-            height: 70px;
-        }
-
-        .reply-emojis {
-            padding: 5px 0 !important;
-        }
-
-        .reply-emojis i {
-            padding: 5px 2px !important;
-            font-size: 1.8em !important;
-        }
-
-        .reply-main {
-            padding: 2px 8px !important;
-        }
-
-        .reply-main textarea {
-            padding: 8px !important;
-            font-size: 18px;
-        }
-
-        .reply-recording {
-            padding: 5px 0 !important;
-        }
-
-        .reply-recording i {
-            padding: 5px 0 !important;
-            font-size: 1.8em !important;
-        }
-
-        .reply-send {
-            padding: 5px 0 !important;
-        }
-
-        .reply-send i {
-            padding: 5px 2px 5px 0 !important;
-            font-size: 1.8em !important;
-        }
+    ul.list-unstyled {
+        padding-right: 0 !important;
     }
 </style>

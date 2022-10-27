@@ -38,7 +38,7 @@
                                     ({{ $teacher->grade->students->count() }}) طلاب</p>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="users.email">البريد الالكتروني</label>
+                                <label class="control-label" for="users.email">رقم الهوية </label>
                                 <p id="name" name="name" class="form-control-static">{{ $teacher->user->email }}</p>
                             </div>
                             <p>
