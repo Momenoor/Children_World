@@ -15,6 +15,7 @@
         "laravel/framework": "^7.29",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^2.5",
+        "livewire/livewire": "^2.10",
         "musonza/chat": "^4.4"
     },
     "require-dev": {

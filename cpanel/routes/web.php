@@ -26,6 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     });
+
+    Route::get('chat', function () {
+        return view('pages.chat.home');
+    });
+
     Route::prefix('admin/')->middleware('role:admin')->group(function () {
         Route::get('/', Admin\HomeController::class)->name('admin.homepage');
         Route::get('home', Admin\HomeController::class)->name('admin.home');

@@ -20,7 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-
+@livewireStyles
 <body>
     <div id="wrapper">
         <?php $prefix = Auth::user()->role_key; ?>
@@ -47,6 +47,7 @@
             </div>
         </main>
     </div>
+    @livewireScripts
     @stack('scripts')
 </body>
 
