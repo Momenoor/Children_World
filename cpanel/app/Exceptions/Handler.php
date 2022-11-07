@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use ProtoneMedia\Splade\SpladeCore;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -25,6 +26,12 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+    public function register()
+    {
+        $this->renderable(\ProtoneMedia\Splade\SpladeCore::exceptionHandler($this));
+
+    }
 
     /**
      * Report or log an exception.
@@ -50,6 +57,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+
         return parent::render($request, $exception);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Http\Middleware\TrustHosts as Middleware;
+Use Illuminate\Http\Middleware\TrustProxies as Middleware;
 
 class TrustHosts extends Middleware
 {

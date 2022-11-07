@@ -1,0 +1,201 @@
+{
+  "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.eot": {
+    "file": "assets/la-brands-400.c0e32387.eot",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.eot"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.eot": {
+    "file": "assets/la-regular-400.7dc456f0.eot",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.eot"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.eot": {
+    "file": "assets/la-solid-900.8a57f8a9.eot",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.eot"
+  },
+  "resources/assets/plugins/global/fonts/bootstrap-icons/bootstrap-icons.woff2": {
+    "file": "assets/bootstrap-icons.c69bf1cc.woff2",
+    "src": "resources/assets/plugins/global/fonts/bootstrap-icons/bootstrap-icons.woff2"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400.3fe890d0.woff2",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-brands-400.woff2"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400.fe69d948.woff2",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-regular-400.woff2"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-v4compatibility.woff2": {
+    "file": "assets/fa-v4compatibility.7d1c2ce5.woff2",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-v4compatibility.woff2"
+  },
+  "resources/assets/plugins/global/fonts/fonticon/fonticon.ttf": {
+    "file": "assets/fonticon.4a890608.ttf",
+    "src": "resources/assets/plugins/global/fonts/fonticon/fonticon.ttf"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900.d27bc752.woff2",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-solid-900.woff2"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.woff2": {
+    "file": "assets/la-brands-400.ff70c9bc.woff2",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.woff2"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.woff2": {
+    "file": "assets/la-solid-900.10a68e01.woff2",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.woff2"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.woff2": {
+    "file": "assets/la-regular-400.51ca2c00.woff2",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.woff2"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400.fdc1f753.ttf",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-regular-400.ttf"
+  },
+  "resources/assets/plugins/global/fonts/bootstrap-icons/bootstrap-icons.woff": {
+    "file": "assets/bootstrap-icons.13977b4a.woff",
+    "src": "resources/assets/plugins/global/fonts/bootstrap-icons/bootstrap-icons.woff"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-v4compatibility.ttf": {
+    "file": "assets/fa-v4compatibility.4d73f280.ttf",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-v4compatibility.ttf"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400.c7ae37d3.ttf",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-brands-400.ttf"
+  },
+  "resources/assets/plugins/global/fonts/fonticon/fonticon.woff": {
+    "file": "assets/fonticon.b8cf9703.woff",
+    "src": "resources/assets/plugins/global/fonts/fonticon/fonticon.woff"
+  },
+  "resources/assets/plugins/global/fonts/@fortawesome/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900.6d53c706.ttf",
+    "src": "resources/assets/plugins/global/fonts/@fortawesome/fa-solid-900.ttf"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.woff": {
+    "file": "assets/la-brands-400.14c63377.woff",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.woff"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.woff": {
+    "file": "assets/la-solid-900.a0d21b2a.woff",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.woff"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.woff": {
+    "file": "assets/la-regular-400.7711fabc.woff",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.woff"
+  },
+  "resources/assets/plugins/global/fonts/fonticon/fonticon.woff2": {
+    "file": "assets/fonticon.18f74175.woff2",
+    "src": "resources/assets/plugins/global/fonts/fonticon/fonticon.woff2"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.ttf": {
+    "file": "assets/la-brands-400.fbc98702.ttf",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.ttf"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.ttf": {
+    "file": "assets/la-solid-900.07ce3559.ttf",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.ttf"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.ttf": {
+    "file": "assets/la-regular-400.4b6ab8d0.ttf",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.ttf"
+  },
+  "resources/assets/plugins/global/fonts/fonticon/fonticon.eot": {
+    "file": "assets/fonticon.8308cb17.eot",
+    "src": "resources/assets/plugins/global/fonts/fonticon/fonticon.eot"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.svg": {
+    "file": "assets/la-regular-400.884ce19c.svg",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-regular-400.svg"
+  },
+  "resources/assets/plugins/global/fonts/fonticon/fonticon.svg": {
+    "file": "assets/fonticon.2210c42d.svg",
+    "src": "resources/assets/plugins/global/fonts/fonticon/fonticon.svg"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.svg": {
+    "file": "assets/la-brands-400.4da18191.svg",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-brands-400.svg"
+  },
+  "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.svg": {
+    "file": "assets/la-solid-900.0ce0cc40.svg",
+    "src": "resources/assets/plugins/global/fonts/line-awesome/la-solid-900.svg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.b1cc4d48.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "node_modules/flatpickr/dist/esm/index.js",
+      "_choices.4b149532.js",
+      "node_modules/autosize/dist/autosize.esm.js",
+      "_nprogress.f948f4d4.js"
+    ],
+    "css": [
+      "assets/app.0b313be7.css"
+    ],
+    "assets": [
+      "assets/la-brands-400.c0e32387.eot",
+      "assets/la-brands-400.ff70c9bc.woff2",
+      "assets/la-brands-400.14c63377.woff",
+      "assets/la-brands-400.fbc98702.ttf",
+      "assets/la-brands-400.4da18191.svg",
+      "assets/la-regular-400.7dc456f0.eot",
+      "assets/la-regular-400.51ca2c00.woff2",
+      "assets/la-regular-400.7711fabc.woff",
+      "assets/la-regular-400.4b6ab8d0.ttf",
+      "assets/la-regular-400.884ce19c.svg",
+      "assets/la-solid-900.8a57f8a9.eot",
+      "assets/la-solid-900.10a68e01.woff2",
+      "assets/la-solid-900.a0d21b2a.woff",
+      "assets/la-solid-900.07ce3559.ttf",
+      "assets/la-solid-900.0ce0cc40.svg",
+      "assets/bootstrap-icons.c69bf1cc.woff2",
+      "assets/bootstrap-icons.13977b4a.woff",
+      "assets/fa-brands-400.3fe890d0.woff2",
+      "assets/fa-brands-400.c7ae37d3.ttf",
+      "assets/fa-regular-400.fe69d948.woff2",
+      "assets/fa-regular-400.fdc1f753.ttf",
+      "assets/fa-solid-900.d27bc752.woff2",
+      "assets/fa-solid-900.6d53c706.ttf",
+      "assets/fa-v4compatibility.7d1c2ce5.woff2",
+      "assets/fa-v4compatibility.4d73f280.ttf",
+      "assets/fonticon.4a890608.ttf",
+      "assets/fonticon.b8cf9703.woff",
+      "assets/fonticon.18f74175.woff2",
+      "assets/fonticon.8308cb17.eot",
+      "assets/fonticon.2210c42d.svg"
+    ]
+  },
+  "node_modules/flatpickr/dist/esm/index.js": {
+    "file": "assets/index.ee3a27ee.js",
+    "src": "node_modules/flatpickr/dist/esm/index.js",
+    "isDynamicEntry": true
+  },
+  "_choices.4b149532.js": {
+    "file": "assets/choices.4b149532.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "node_modules/autosize/dist/autosize.esm.js": {
+    "file": "assets/autosize.esm.daa08a8c.js",
+    "src": "node_modules/autosize/dist/autosize.esm.js",
+    "isDynamicEntry": true
+  },
+  "_nprogress.f948f4d4.js": {
+    "file": "assets/nprogress.f948f4d4.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.d835d249.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.css": {
+    "file": "assets/app.0b313be7.css",
+    "src": "resources/js/app.css"
+  }
+}
