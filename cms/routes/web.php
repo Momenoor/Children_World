@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\MessagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,7 @@ Route::middleware('splade')->group(function () {
             return view('dashboard');
         })->name('dashboard');
         Route::resource('grades',GradeController::class);
+        Route::resource('messages',MessagesController::class);
     });
 
     require __DIR__.'/auth.php';

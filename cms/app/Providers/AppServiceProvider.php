@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use ProtoneMedia\Splade\Facades\Splade;
+use ProtoneMedia\Splade\SpladeTable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
         Splade::defaultToast(function ($toast) {
             $toast->autoDismiss(1);
         });
+
     }
 }
