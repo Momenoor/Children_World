@@ -1,5 +1,6 @@
 {
     "require": {
-        "laravel/ui": "^4.0"
+        "laravel/ui": "^4.0",
+        "backpack/crud": "^5.4"
     }
 }

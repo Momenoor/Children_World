@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     //
     protected $fillable = [
         'name',

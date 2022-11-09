@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Homework extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     protected $table = 'homeworks';
     protected $fillable = [
         'subject',

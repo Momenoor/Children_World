@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedual extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     //
 
     protected $dates = [
