@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rate extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     protected $fillable = [
         'date',
         'teacher_id',

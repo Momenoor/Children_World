@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Teacher extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     //
     protected $fillable = [
         'name',
@@ -14,6 +16,8 @@ class Teacher extends Model
         'grade_id',
         'user_id'
     ];
+
+    protected $with = ['user','grade'];
 
 
     public function user()
@@ -38,5 +42,21 @@ class Teacher extends Model
     public function rates()
     {
         return $this->hasMany(Rate::class);
+    }
+
+    public function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->user->name,
+            set: fn($value) => $this->user->name = $value,
+        );
+    }
+
+    public function email(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->user->email,
+            set: fn($value) => $this->user->email = $value,
+        );
     }
 }

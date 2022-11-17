@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
 
     protected $fillable = [
         'answer',

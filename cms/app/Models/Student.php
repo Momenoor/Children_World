@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
 
     /**
      * The attributes that should be cast to native types.
