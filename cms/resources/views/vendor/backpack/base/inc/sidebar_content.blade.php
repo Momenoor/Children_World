@@ -51,6 +51,26 @@
     </a>
     <!--end:Menu link-->
 </div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link" href="{{ backpack_url('teacher') }}">
+        <span class="menu-icon">
+            <i class="bi bi-calendar3-event fs-3"></i>
+        </span>
+        <span class="menu-title">{{ trans('backpack::base.teachers') }}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link" href="{{ backpack_url('student') }}">
+        <span class="menu-icon">
+            <i class="bi bi-calendar3-event fs-3"></i>
+        </span>
+        <span class="menu-title">{{ trans('backpack::base.students') }}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
 <!--end:Menu item-->
 <!--begin:Menu item-->
 {{--             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">

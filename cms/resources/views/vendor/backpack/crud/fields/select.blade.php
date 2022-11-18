@@ -23,7 +23,7 @@
 
     <select
         name="{{ $field['name'] }}"
-        @include('crud::fields.inc.attributes')
+        @include('crud::fields.inc.select_attributes')
         >
 
         @if ($field['allows_null'])

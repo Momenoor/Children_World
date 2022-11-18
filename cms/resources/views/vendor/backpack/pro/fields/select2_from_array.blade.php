@@ -18,7 +18,7 @@
         data-allows-null="{{var_export($field['allows_null'])}}"
         data-placeholder="{{$field['placeholder']}}"
         bp-field-main-input
-        @include('crud::fields.inc.attributes', ['default_class' =>  'form-control select2_from_array'])
+        @include('crud::fields.inc.attributes', ['default_class' =>  'form-select form-select-solid select2_from_array'])
         @if ($field['multiple'])multiple @endif
         >
 
@@ -48,17 +48,9 @@
 {{-- If a field type is shown multiple times on a form, the CSS and JS will only be loaded once --}}
 
 
-{{-- FIELD CSS - will be loaded in the after_styles section --}}
-@push('crud_fields_styles')
-    {{-- include select2 css --}}
-    @loadOnce('packages/select2/dist/css/select2.min.css')
-    @loadOnce('packages/select2-bootstrap-theme/dist/select2-bootstrap.min.css')
-@endpush
-
 {{-- FIELD JS - will be loaded in the after_scripts section --}}
 @push('crud_fields_scripts')
     {{-- include select2 js --}}
-    @loadOnce('packages/select2/dist/js/select2.full.min.js')
     @if (app()->getLocale() !== 'en')
         @loadOnce('packages/select2/dist/js/i18n/' . str_replace('_', '-', app()->getLocale()) . '.js')
     @endif

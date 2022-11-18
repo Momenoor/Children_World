@@ -19,7 +19,7 @@
     <select
         name="{{ $field['name'] }}"
         style="width: 100%"
-        @include('crud::fields.inc.attributes', ['default_class' =>  'form-control'])
+        @include('crud::fields.inc.select_attributes', ['default_class' =>  'form-select'])
         >
 
             @if ($field['allows_null'])

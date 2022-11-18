@@ -68,7 +68,7 @@
         data-language="{{ str_replace('_', '-', app()->getLocale()) }}"
         data-is-pivot-select={{var_export($field['is_pivot_select'])}}
         bp-field-main-input
-        @include('crud::fields.inc.attributes', ['default_class' =>  'form-control'])
+        @include('crud::fields.inc.attributes', ['default_class' =>  'form-select form-select-solid'])
 
         @if($field['multiple'])
         multiple
@@ -104,16 +104,9 @@
 {{-- Extra CSS and JS for this particular field --}}
 {{-- If a field type is shown multiple times on a form, the CSS and JS will only be loaded once --}}
 {{-- FIELD CSS - will be loaded in the after_styles section --}}
-@push('crud_fields_styles')
-    {{-- include select2 css --}}
-    @loadOnce('packages/select2/dist/css/select2.min.css')
-    @loadOnce('packages/select2-bootstrap-theme/dist/select2-bootstrap.min.css')
-@endpush
-
 {{-- FIELD JS - will be loaded in the after_scripts section --}}
 @push('crud_fields_scripts')
     {{-- include select2 js --}}
-    @loadOnce('packages/select2/dist/js/select2.full.min.js')
     @if (app()->getLocale() !== 'en')
         @loadOnce('packages/select2/dist/js/i18n/' . str_replace('_', '-', app()->getLocale()) . '.js')
     @endif
@@ -138,18 +131,18 @@
         var $allowClear = $allows_null;
         var $isFieldInline = element.data('field-is-inline');
         var $isPivotSelect = element.data('is-pivot-select');
-        
+
         const changePivotOptionState = function(pivotSelector, enable = true) {
             let containerName = getPivotContainerName(pivotSelector);
             let pivotsContainer = pivotSelector.closest('div[data-repeatable-holder="'+containerName+'"]');
-            
+
             $(pivotsContainer).children().each(function(i,container) {
                 $(container).find('select').each(function(i, el) {
-                    
+
                     if(typeof $(el).attr('data-is-pivot-select') !== 'undefined' && $(el).attr('data-is-pivot-select')) {
                         if(pivotSelector.val()) {
                             if(enable) {
-                                $(el).find('option[value="'+pivotSelector.val()+'"]').prop('disabled',false);   
+                                $(el).find('option[value="'+pivotSelector.val()+'"]').prop('disabled',false);
                             }else{
                                 if($(el).val() !== pivotSelector.val()) {
                                     $(el).find('option[value="'+pivotSelector.val()+'"]').prop('disabled',true);
@@ -167,13 +160,13 @@
         }
 
         const disablePreviouslySelectedPivots = function(pivotSelector) {
-            
+
             let containerName = getPivotContainerName(pivotSelector);
             let pivotsContainer = pivotSelector.closest('div[data-repeatable-holder="'+containerName+'"]');
 
             let selectedValues = [];
             let selectInputs = [];
-            
+
             $(pivotsContainer).children().each(function(i,container) {
                 $(container).find('select').each(function(i, el) {
                     if(typeof $(el).attr('data-is-pivot-select') !== 'undefined' && $(el).attr('data-is-pivot-select') != "false") {
@@ -204,7 +197,7 @@
         if (!$(element).hasClass("select2-hidden-accessible"))
         {
             $(element).select2($select2Settings);
-            
+
             if($isPivotSelect) {
                 disablePreviouslySelectedPivots($(element));
             }
@@ -213,7 +206,7 @@
         if($isPivotSelect) {
             $(element).on('select2:selecting', function(e) {
                 if($(this).val()) {
-                    changePivotOptionState($(this)); 
+                    changePivotOptionState($(this));
                 }
                 return true;
             });

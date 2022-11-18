@@ -175,14 +175,14 @@
                     $dragDestination.find('li').each(function(val,obj) {
                         $hiddenSelect.append('<option value="'+obj.getAttribute('value')+'" selected></option>');
                     });
-                    
+
                     $hiddenSelect.trigger('change');
                 }
             }
         }).disableSelection();
 
         $hiddenSelect.on('CrudField:disable', function(e) {
-            $( "#"+$allId+", #"+$selectedId ).sortable("option","disabled", true);        
+            $( "#"+$allId+", #"+$selectedId ).sortable("option","disabled", true);
         });
 
         $hiddenSelect.on('CrudField:enable', function(e) {

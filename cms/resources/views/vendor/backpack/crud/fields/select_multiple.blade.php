@@ -12,7 +12,7 @@
     if (is_a($field['value'], \Illuminate\Support\Collection::class)) {
         $field['value'] = $field['value']->pluck(app($field['model'])->getKeyName())->toArray();
     }
-    
+
 @endphp
 
 @include('crud::fields.inc.wrapper_start')
@@ -24,7 +24,7 @@
     <select
     	class="form-control"
         name="{{ $field['name'] }}[]"
-        @include('crud::fields.inc.attributes')
+        @include('crud::fields.inc.select_attributes')
         bp-field-main-input
     	multiple>
 

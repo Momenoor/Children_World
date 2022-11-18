@@ -15,7 +15,7 @@
     $field['placeholder'] = $field['placeholder'] ?? trans('backpack::crud.select_entries');
 
     $field['value'] = old_empty_or_null($field['name'], collect()) ??  $field['value'] ?? $field['default'] ?? collect();
-    
+
     // when value is returned from crud panel it will be a collection, when returns from `old()` is already an array
     if (is_a($field['value'], \Illuminate\Support\Collection::class)) {
         $field['value'] = $field['value']->pluck($model_instance->getKeyName())->toArray();
@@ -38,7 +38,7 @@
         data-allows-null="{{var_export($field['allows_null'])}}"
         data-placeholder="{{$field['placeholder']}}"
         bp-field-main-input
-        @include('crud::fields.inc.attributes', ['default_class' =>  'form-control select2_multiple'])
+        @include('crud::fields.inc.attributes', ['default_class' =>  'form-select form-select-solid select2_multiple'])
         multiple>
 
         @if (isset($field['model']))
@@ -68,16 +68,9 @@
 {{-- Extra CSS and JS for this particular field --}}
 
     {{-- FIELD CSS - will be loaded in the after_styles section --}}
-    @push('crud_fields_styles')
-        {{-- include select2 css --}}
-        @loadOnce('packages/select2/dist/css/select2.min.css')
-        @loadOnce('packages/select2-bootstrap-theme/dist/select2-bootstrap.min.css')
-    @endpush
-
     {{-- FIELD JS - will be loaded in the after_scripts section --}}
     @push('crud_fields_scripts')
         {{-- include select2 js --}}
-        @loadOnce('packages/select2/dist/js/select2.full.min.js')
         @if (app()->getLocale() !== 'en')
             @loadOnce('packages/select2/dist/js/i18n/' . str_replace('_', '-', app()->getLocale()) . '.js')
         @endif

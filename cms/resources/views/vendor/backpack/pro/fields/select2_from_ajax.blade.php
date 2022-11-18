@@ -30,7 +30,7 @@
         data-include-all-form-fields="{{ isset($field['include_all_form_fields']) ? ($field['include_all_form_fields'] ? 'true' : 'false') : 'false' }}"
         data-ajax-delay="{{ $field['delay'] }}"
         data-language="{{ str_replace('_', '-', app()->getLocale()) }}"
-        @include('crud::fields.inc.attributes', ['default_class' =>  'form-control'])
+        @include('crud::fields.inc.attributes', ['default_class' =>  'form-select form-select-solid'])
         >
 
         @if ($old_value)
@@ -68,26 +68,10 @@
 {{-- If a field type is shown multiple times on a form, the CSS and JS will only be loaded once --}}
 
     {{-- FIELD CSS - will be loaded in the after_styles section --}}
-@push('crud_fields_styles')
-    {{-- include select2 css --}}
-    @loadOnce('packages/select2/dist/css/select2.min.css')
-    @loadOnce('packages/select2-bootstrap-theme/dist/select2-bootstrap.min.css')
-    {{-- allow clear --}}
-    @if($field['allows_null'])
-        @loadOnce('select2_from_ajax_custom_css')
-        <style type="text/css">
-            .select2-selection__clear::after {
-                content: ' {{ trans('backpack::crud.clear') }}';
-            }
-        </style>
-        @endLoadOnce
-    @endif
-@endpush
 
     {{-- FIELD JS - will be loaded in the after_scripts section --}}
 @push('crud_fields_scripts')
     {{-- include select2 js --}}
-    @loadOnce('packages/select2/dist/js/select2.full.min.js')
     @if (app()->getLocale() !== 'en')
         @loadOnce('packages/select2/dist/js/i18n/' . str_replace('_', '-', app()->getLocale()) . '.js')
     @endif
@@ -136,9 +120,9 @@
                             q: params.term, // search term
                             page: params.page, // pagination
                             form: form.serializeArray(), // all other form inputs
-                            triggeredBy: 
+                            triggeredBy:
                             {
-                                'rowNumber': element.attr('data-row-number') !== 'undefined' ? element.attr('data-row-number')-1 : false, 
+                                'rowNumber': element.attr('data-row-number') !== 'undefined' ? element.attr('data-row-number')-1 : false,
                                 'fieldName': $fieldCleanName
                             }
                         };
@@ -151,7 +135,7 @@
                 },
                 processResults: function (data, params) {
                     params.page = params.page || 1;
-                    
+
                     //if we have data.data here it means we returned a paginated instance from controller.
                     //otherwise we returned one or more entries unpaginated.
                     let paginate = false;
