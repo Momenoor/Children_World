@@ -1,94 +1,90 @@
 @if (backpack_auth()->check())
     {{-- Left side column. contains the sidebar --}}
-    <div class="{{ config('backpack.base.sidebar_class') }}">
-      {{-- sidebar: style can be found in sidebar.less --}}
-      <nav class="sidebar-nav overflow-hidden">
-        {{-- sidebar menu: : style can be found in sidebar.less --}}
-        <ul class="nav">
-          {{-- <li class="nav-title">{{ trans('backpack::base.administration') }}</li> --}}
-          {{-- ================================================ --}}
-          {{-- ==== Recommended place for admin menu items ==== --}}
-          {{-- ================================================ --}}
-
-          @include(backpack_view('inc.sidebar_content'))
-
-          {{-- ======================================= --}}
-          {{-- <li class="divider"></li> --}}
-          {{-- <li class="nav-title">Entries</li> --}}
-        </ul>
-      </nav>
-      {{-- /.sidebar --}}
+    {{-- sidebar: style can be found in sidebar.less --}}
+    <div id="kt_aside" class="{{ config('backpack.base.sidebar_class') }}" data-kt-drawer="true"
+        data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
+        data-kt-drawer-width="{default:'200px', '300px': '250px'}" data-kt-drawer-direction="start"
+        data-kt-drawer-toggle="#kt_aside_mobile_toggle">
+        <!--begin::Brand-->
+        <div class="aside-logo flex-column-auto" id="kt_aside_logo">
+            <!--begin::Logo-->
+            <a href="{{ backpack_url('/') }}">
+                <img alt="Logo" src="{{ asset('assets/media/logos/demo13.svg') }}"
+                    class="{{ config('backpack.base.header_logo_class') }}" />
+            </a>
+            <!--end::Logo-->
+            <!--begin::Aside toggler-->
+            <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle me-n2"
+                data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
+                data-kt-toggle-name="aside-minimize">
+                <!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg-->
+                <span class="svg-icon svg-icon-1 rotate-180">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5"
+                            d="M14.2657 11.4343L18.45 7.25C18.8642 6.83579 18.8642 6.16421 18.45 5.75C18.0358 5.33579 17.3642 5.33579 16.95 5.75L11.4071 11.2929C11.0166 11.6834 11.0166 12.3166 11.4071 12.7071L16.95 18.25C17.3642 18.6642 18.0358 18.6642 18.45 18.25C18.8642 17.8358 18.8642 17.1642 18.45 16.75L14.2657 12.5657C13.9533 12.2533 13.9533 11.7467 14.2657 11.4343Z"
+                            fill="currentColor" />
+                        <path
+                            d="M8.2657 11.4343L12.45 7.25C12.8642 6.83579 12.8642 6.16421 12.45 5.75C12.0358 5.33579 11.3642 5.33579 10.95 5.75L5.40712 11.2929C5.01659 11.6834 5.01659 12.3166 5.40712 12.7071L10.95 18.25C11.3642 18.6642 12.0358 18.6642 12.45 18.25C12.8642 17.8358 12.8642 17.1642 12.45 16.75L8.2657 12.5657C7.95328 12.2533 7.95328 11.7467 8.2657 11.4343Z"
+                            fill="currentColor" />
+                    </svg>
+                </span>
+                <!--end::Svg Icon-->
+            </div>
+            <!--end::Aside toggler-->
+        </div>
+        <!--end::Brand-->
+        <!--begin::Aside menu-->
+        <div class="aside-menu flex-column-fluid">
+            <!--begin::Aside Menu-->
+            <div class="hover-scroll-overlay-y my-2 py-2" id="kt_aside_menu_wrapper" data-kt-scroll="true"
+                data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-height="auto"
+                data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer" data-kt-scroll-wrappers="#kt_aside_menu"
+                data-kt-scroll-offset="0">
+                <!--begin::Menu-->
+                <div class="menu menu-column menu-title-gray-800 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500"
+                    id="#kt_aside_menu" data-kt-menu="true">
+                    @include(backpack_view('inc.sidebar_content'))
+                    {{-- /.sidebar --}}
+                </div>
+                <!--end:Menu item-->
+            </div>
+            <!--end::Menu-->
+        </div>
+    </div>
+    <!--end::Aside menu-->
+    @include('backpack::base.inc.sidebar_footer')
     </div>
 @endif
 
-@push('before_scripts')
-  <script type="text/javascript">
-    // Save default sidebar class
-    let sidebarClass = (document.body.className.match(/sidebar-(sm|md|lg|xl)-show/) || ['sidebar-lg-show'])[0];
-    let sidebarTransition = function(value) {
-        document.querySelector('.app-body > .sidebar').style.transition = value || '';
-    };
-
-    // Recover sidebar state
-    let sessionState = sessionStorage.getItem('sidebar-collapsed');
-    if (sessionState) {
-      // disable the transition animation temporarily, so that if you're browsing across
-      // pages with the sidebar closed, the sidebar does not flicker into the view
-      sidebarTransition("none");
-      document.body.classList.toggle(sidebarClass, sessionState === '1');
-
-      // re-enable the transition, so that if the user clicks the hamburger menu, it does have a nice transition
-      setTimeout(sidebarTransition, 100);
-    }
-  </script>
-@endpush
-
 @push('after_scripts')
-  <script>
-      // Store sidebar state
-      document.querySelectorAll('.sidebar-toggler').forEach(function(toggler) {
-        toggler.addEventListener('click', function() {
-          sessionStorage.setItem('sidebar-collapsed', Number(!document.body.classList.contains(sidebarClass)))
-          // wait for the sidebar animation to end (250ms) and then update the table headers because datatables uses a cached version
-          // and dont update this values if there are dom changes after the table is draw. The sidebar toggling makes
-          // the table change width, so the headers need to be adjusted accordingly.
-          setTimeout(function() {
-            if(typeof crud !== "undefined" && crud.table) {
-              crud.table.fixedHeader.adjust();
-            }
-          }, 300);
+    <script type="text/javascript">
+        var asideMinimize = KTCookie.get("data-kt-aside-minimize");
+        if (asideMinimize == 'on') {
+            document.body.setAttribute('data-kt-aside-minimize', 'on');
+            document.querySelector('#kt_aside_toggle').classList.add('active');
+            document.querySelector('#kt_aside_toggle span.svg-icon').classList.add('rotate-180');
+
+        }
+
+        $(document).ready(function() {
+            var menuElement = document.getElementById("#kt_aside_menu");
+            var menu = KTMenu.getInstance(menuElement);
+
+            var full_url = '{{ Request::fullUrl() }}';
+            var activeLink = menu.getLinkByAttribute(full_url);
+            menu.setActiveLink(activeLink);
         })
-      });
-      // Set active state on menu element
-      var full_url = "{{ Request::fullUrl() }}";
-      var $navLinks = $(".sidebar-nav li a, .app-header li a");
 
-      // First look for an exact match including the search string
-      var $curentPageLink = $navLinks.filter(
-          function() { return $(this).attr('href') === full_url; }
-      );
+        // Store sidebar state
 
-      // If not found, look for the link that starts with the url
-      if(!$curentPageLink.length > 0){
-          $curentPageLink = $navLinks.filter( function() {
-            if ($(this).attr('href').startsWith(full_url)) {
-              return true;
-            }
-
-            if (full_url.startsWith($(this).attr('href'))) {
-              return true;
-            }
-
-            return false;
-          });
-      }
-
-      // for the found links that can be considered current, make sure
-      // - the parent item is open
-      $curentPageLink.parents('li').addClass('open');
-      // - the actual element is active
-      $curentPageLink.each(function() {
-        $(this).addClass('active');
-      });
-  </script>
+        document.querySelector('#kt_aside_toggle').addEventListener('click', function() {
+            setTimeout(function() {
+                if (typeof crud !== "undefined" && crud.table) {
+                    crud.table.fixedHeader.adjust();
+                }
+            }, 300);
+        });
+        // Set active state on menu element
+    </script>
 @endpush

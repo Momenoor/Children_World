@@ -1,6 +1,6 @@
 {{-- html5 month input --}}
 @include('crud::fields.inc.wrapper_start')
-    <label>{!! $field['label'] !!}</label>
+@include('crud::fields.label')
     @include('crud::fields.inc.translatable_icon')
     <input
         type="month"

@@ -6,12 +6,12 @@
  @endphp
 
   {{-- DATA TABLES SCRIPT --}}
-  <script type="text/javascript" src="{{ asset('packages/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('packages/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+{{--   <script type="text/javascript" src="{{ asset('packages/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('packages/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('packages/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('packages/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('packages/datatables.net-fixedheader-bs4/js/fixedHeader.bootstrap4.min.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('packages/datatables.net-fixedheader-bs4/js/fixedHeader.bootstrap4.min.js') }}"></script> --}}
 
   <script>
     // here we will check if the cached dataTables paginator length is conformable with current paginator settings.
@@ -164,7 +164,7 @@
 
                       return '<tr data-dt-row="'+col.rowIndex+'" data-dt-column="'+col.columnIndex+'">'+
                                 '<td style="vertical-align:top; border:none;"><strong>'+col.title.trim()+':'+'<strong></td> '+
-                                '<td style="padding-left:10px;padding-bottom:10px; border:none;">'+col.data+'</td>'+
+                                '<td style="padding-right:10px;padding-bottom:10px; border:none;">'+col.data+'</td>'+
                               '</tr>';
                   } ).join('');
 
@@ -269,9 +269,9 @@
             },
           },
           dom:
-            "<'row hidden'<'col-sm-6'i><'col-sm-6 d-print-none'f>>" +
+            "<'row d-none'<'col-sm-6'i><'col-sm-6 d-print-none'f>>" +
             "<'row'<'col-sm-12'tr>>" +
-            "<'row mt-2 d-print-none '<'col-sm-12 col-md-4'l><'col-sm-0 col-md-4 text-center'B><'col-sm-12 col-md-4 'p>>",
+            "<'row mt-2 d-print-none '<'col-sm-12 col-md-4'l><'col-sm-0 col-md-4 text-center'><'col-sm-12 col-md-4 'p>>",
       }
   }
   </script>
@@ -286,7 +286,7 @@
 
       // move search bar
       $("#crudTable_filter").appendTo($('#datatable_search_stack' ));
-      $("#crudTable_filter input").removeClass('form-control-sm');
+      $("#crudTable_filter input").removeClass('form-control-sm').addClass('ps-15');
 
       // move "showing x out of y" info to header
       @if($crud->getSubheading())
@@ -297,7 +297,7 @@
 
       @if($crud->getOperationSetting('resetButton') ?? true)
         // create the reset button
-        var crudTableResetButton = '<a href="{{url($crud->route)}}" class="ml-1" id="crudTable_reset_button">{{ trans('backpack::crud.reset') }}</a>';
+        var crudTableResetButton = '<a href="{{url($crud->route)}}" class="ms-2" id="crudTable_reset_button">{{ trans('backpack::crud.reset') }}</a>';
 
         $('#datatable_info_stack').append(crudTableResetButton);
 

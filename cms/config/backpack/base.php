@@ -17,7 +17,7 @@ return [
 
     // Direction, according to language
     // (left-to-right vs right-to-left)
-    'html_direction' => 'ltr',
+    'html_direction' => 'rtl',
 
     // ----
     // HEAD
@@ -69,9 +69,10 @@ return [
         // 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css',
 
         'assets/plugins/custom/fullcalendar/fullcalendar.bundle.css',
-        'assets/plugins/custom/datatables/datatables.bundle.css',
-        'assets/plugins/global/plugins.bundle.css',
-        'assets/css/style.bundle.css',
+        'assets/plugins/global/plugins.bundle.rtl.css',
+        //'assets/css/style.bundle.css',
+        'assets/css/style.bundle.rtl.css',
+        'assets/css/app.css',
     ],
 
     // CSS files that are loaded in all pages, using Laravel's mix() helper
@@ -109,7 +110,7 @@ return [
     // Try sidebar-hidden, sidebar-fixed, sidebar-compact, sidebar-lg-show
 
     // Sidebar element classes.
-    'sidebar_class' => 'sidebar sidebar-pills bg-light',
+    'sidebar_class' => 'aside aside-dark aside-hoverable',
     // Remove "sidebar-transparent" for standard sidebar look
     // Try "sidebar-light" or "sidebar-dark" for dark/light links
     // You can also add a background class like bg-dark, bg-primary, bg-secondary, bg-danger, bg-warning, bg-success, bg-info, bg-blue, bg-light-blue, bg-indigo, bg-purple, bg-pink, bg-red, bg-orange, bg-yellow, bg-green, bg-teal, bg-cyan
@@ -142,15 +143,14 @@ return [
     // JS files that are loaded in all pages, using Laravel's asset() helper
     'scripts' => [
         // Backstrap includes jQuery, Bootstrap, CoreUI, PNotify, Popper
-        //'packages/backpack/base/js/bundle.js',
+        'packages/backpack/base/js/bundle.js',
         'assets/plugins/global/plugins.bundle.js',
         'assets/js/scripts.bundle.js',
         'assets/plugins/custom/fullcalendar/fullcalendar.bundle.js',
-        'assets/js/widgets.bundle.js',
-        'assets/js/custom/widgets.js',
-        '',
-        '',
-        '',
+        //'assets/js/widgets.bundle.js',
+        //'assets/js/custom/widgets.js',
+        //'packages/noty/noty.min.js',
+        //'packages/pace-js/pace.min.js',
         // examples (everything inside the bundle, loaded from CDN)
         // 'https://code.jquery.com/jquery-3.4.1.min.js',
         // 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',

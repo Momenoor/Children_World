@@ -13,7 +13,7 @@ $value = $timestamp ? date('Y-m-d\TH:i:s', $timestamp) : '';
 @endphp
 
 @include('crud::fields.inc.wrapper_start')
-    <label>{!! $field['label'] !!}</label>
+@include('crud::fields.label')
     @include('crud::fields.inc.translatable_icon')
     <input
         type="datetime-local"
