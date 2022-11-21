@@ -71,6 +71,56 @@
     </a>
     <!--end:Menu link-->
 </div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link" href="{{ backpack_url('grade') }}">
+        <span class="menu-icon">
+            <i class="bi bi-calendar3-event fs-3"></i>
+        </span>
+        <span class="menu-title">{{ trans('backpack::base.grades') }}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link" href="{{ backpack_url('schedual') }}">
+        <span class="menu-icon">
+            <i class="bi bi-calendar3-event fs-3"></i>
+        </span>
+        <span class="menu-title">{{ trans('backpack::base.scheduals') }}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link" href="{{ backpack_url('rate') }}">
+        <span class="menu-icon">
+            <i class="bi bi-calendar3-event fs-3"></i>
+        </span>
+        <span class="menu-title">{{ trans('backpack::base.rates') }}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link" href="{{ backpack_url('homework') }}">
+        <span class="menu-icon">
+            <i class="bi bi-calendar3-event fs-3"></i>
+        </span>
+        <span class="menu-title">{{ trans('backpack::base.homeworks') }}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
+<div class="menu-item">
+    <!--begin:Menu link-->
+    <a class="menu-link" href="{{ backpack_url('answer') }}">
+        <span class="menu-icon">
+            <i class="bi bi-calendar3-event fs-3"></i>
+        </span>
+        <span class="menu-title">{{ trans('backpack::base.answers') }}</span>
+    </a>
+    <!--end:Menu link-->
+</div>
 <!--end:Menu item-->
 <!--begin:Menu item-->
 {{--             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -124,4 +174,3 @@
                 </div>
                 <!--end:Menu sub-->
             </div> --}}
-

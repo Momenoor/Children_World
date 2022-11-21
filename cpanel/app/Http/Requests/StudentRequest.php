@@ -25,7 +25,12 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'user.name' => 'required|unique:users,name,' . optional($this->user)->id . ',id',
+            'user.email' => 'required|unique:users,email,' . optional($this->user)->id . ',id',
+            'user.password' => 'required|confirmed',
+            'born_at' => 'required|date',
+            'grade_id' => 'required',
+
         ];
     }
 

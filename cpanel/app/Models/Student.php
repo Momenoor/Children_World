@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Student extends Model
 {
@@ -51,8 +52,15 @@ class Student extends Model
         return $this->born_at->age;
     }
 
-    public function rates(){
+    public function rates()
+    {
         return $this->hasMany(Rate::class);
     }
 
+    protected function name(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => $this->user->name,
+        );
+    }
 }
