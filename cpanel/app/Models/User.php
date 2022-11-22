@@ -11,6 +11,7 @@ use ReflectionClass;
 class User extends Authenticatable
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use \Spatie\Permission\Traits\HasRoles;
     use Notifiable;
 
     /**

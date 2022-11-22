@@ -3,7 +3,7 @@
 @include('crud::fields.inc.wrapper_start')
     <label>{!! $field['label'] !!}</label>
     @include('crud::fields.inc.translatable_icon')
-    <p class="font-weight-bold">{{$field['value']}} <a href="">{{trans('backpack::crud.update')}}</p>
+    <p class="font-weight-bold">{{$field['value']}} <a class="float-right" href="{{route('user.edit',$crud->entry->user)}}">{{trans('backpack::crud.edit')}}</a></p>
 
     {{-- HINT --}}
     @if (isset($field['hint']))
