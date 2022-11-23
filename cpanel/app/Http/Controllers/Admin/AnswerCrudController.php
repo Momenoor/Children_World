@@ -29,7 +29,7 @@ class AnswerCrudController extends CrudController
 
         CRUD::setModel(\App\Models\Answer::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/answer');
-        CRUD::setEntityNameStrings('answer', 'answers');
+        CRUD::setEntityNameStrings('حل للواجب', 'حلول الواجبات');
     }
 
     /**
@@ -40,11 +40,11 @@ class AnswerCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('answer');
-        CRUD::column('homework_id');
-        CRUD::column('teacher_id');
-        CRUD::column('student_id');
-        CRUD::column('grade_id');
+        CRUD::column('file')->type('image')->label('الحل')->wrapper(['class'=>'border']);
+        CRUD::column('homework_id')->label('الواجب');
+        CRUD::column('teacher_id')->attribute('name')->label('المعلمة');
+        CRUD::column('student_id')->attribute('name')->label('الطالب');
+        CRUD::column('grade_id')->label('الصف');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -64,15 +64,49 @@ class AnswerCrudController extends CrudController
         CRUD::setValidation(AnswerRequest::class);
         $this->crud->addField([
             'type' => 'select2',
-            'name' => 'homework_id', // the relationship name in your Model
-            'entity' => 'homework', // the relationship name in your Model
-            'attribute' => 'title', // attribute on Article that is shown to admin
+            'label'=> 'الصف',
+            'name' => 'grade',
+            'allows_null' => true,
         ]);
-        CRUD::field('answer');
-        CRUD::field('homework_id');
-        CRUD::field('teacher_id');
-        CRUD::field('student_id');
-        CRUD::field('grade_id');
+        CRUD::addField([
+            'name' => 'teacher',
+            'entity' => 'teacher',
+            'label' => 'المعلمة',
+            'attribute' => 'name',
+            'type' => 'select2_from_ajax',
+            'data_source' => url('api/teacher'),
+            'minimum_input_length' => 0,
+            'include_all_form_fields' => true,
+            'method' => 'POST',
+            'dependencies' => ['grade'],
+        ]);
+        CRUD::addField([
+            'name' => 'student',
+            'entity' => 'student',
+            'label' => 'الطالب',
+            'attribute' => 'name',
+            'type' => 'select2_from_ajax',
+            'data_source' => url('api/student'),
+            'minimum_input_length' => 0,
+            'include_all_form_fields' => true,
+            'method' => 'POST',
+            'dependencies' => ['grade'],
+        ]);
+        CRUD::addField([
+            'name' => 'homework',
+            'entity' => 'homework',
+            'label' => 'الواجب',
+            'attribute' => 'subject',
+            'type' => 'select2_from_ajax',
+            'data_source' => url('api/homework'),
+            'minimum_input_length' => 0,
+            'include_all_form_fields' => true,
+            'method' => 'POST',
+            'dependencies' => ['grade', 'teacher'],
+        ]);
+        CRUD::field('file')->type('image')->label('الحل');
+
+
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -90,5 +124,10 @@ class AnswerCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
+    }
+
+    protected function setupShowOperation()
+    {
+        $this->setupListOperation();
     }
 }

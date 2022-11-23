@@ -25,7 +25,11 @@ class HomeworkRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'subject' => 'required',
+            'content' => 'required',
+            'file' => 'required',
+            'teacher' => 'required',
+            'grade' => 'required',
         ];
     }
 
@@ -38,6 +42,7 @@ class HomeworkRequest extends FormRequest
     {
         return [
             //
+
         ];
     }
 
@@ -50,6 +55,7 @@ class HomeworkRequest extends FormRequest
     {
         return [
             //
+
         ];
     }
 }

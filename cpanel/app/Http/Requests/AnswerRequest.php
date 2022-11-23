@@ -25,7 +25,11 @@ class AnswerRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'file' => 'required',
+            'student' => 'required',
+            'teacher' => 'required',
+            'homework' => 'required',
+            'grade' => 'required',
         ];
     }
 

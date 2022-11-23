@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\HasImage;
 use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+    use HasImage;
 
     protected $fillable = [
-        'answer',
+        'file',
         'homework_id',
         'teacher_id',
         'student_id',
@@ -34,6 +36,6 @@ class Answer extends Model
 
     public function homework()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(Homework::class);
     }
 }
