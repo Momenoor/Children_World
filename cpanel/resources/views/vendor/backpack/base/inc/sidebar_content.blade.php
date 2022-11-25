@@ -17,5 +17,4 @@
     </ul>
 </li
 
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('shedual') }}"><i class="nav-icon la la-question"></i> Sheduals</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('schedual') }}"><i class="nav-icon la la-question"></i> Scheduals</a></li>

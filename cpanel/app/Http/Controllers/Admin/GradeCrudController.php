@@ -39,10 +39,28 @@ class GradeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->query->withCount(['students','teachers']);
+        $this->crud->query->withCount(['students', 'teachers']);
         CRUD::column('name')->label('الاسم');
         CRUD::column('students_count')->label('الطلاب');
         CRUD::column('teachers_count')->label('المعلمات');
+        CRUD::column('add_homework')->label('إضافة واجب')->type('custom_html')->value(function ($entry) {
+            return '<a href="' . route('grade.homework.create', $entry) . '" class="btn btn-ghost-warning" data-style="zoom">
+                <span class="ladda-label">
+                    <i class="la la-plus"></i>
+                    إضافة واجب
+                </span>
+            </a>';
+        });
+        CRUD::column('rate_students')->label('تقييم الطلاب')->type('custom_html')->value(
+            '<a href="' . backpack_url('') . '" class="btn btn-ghost-success" data-style="zoom">
+                <span class="ladda-label">
+                    <i class="la la-user-check"></i>
+                    تقييم الطلاب
+                </span>
+            </a>'
+        );
+        ;
+
 
 
         /**
@@ -83,7 +101,8 @@ class GradeCrudController extends CrudController
         $this->setupCreateOperation();
     }
 
-    protected function setupShowOperation(){
+    protected function setupShowOperation()
+    {
         $this->setupListOperation();
     }
 }

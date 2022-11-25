@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeworkCrudController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\TeacherController;
 use App\Http\Controllers\Api\HomeworkController;
@@ -23,3 +24,4 @@ Route::get('/', function () {
 Route::post('api/teacher', TeacherController::class);
 Route::post('api/student', StudentController::class);
 Route::post('api/homework', HomeworkController::class);
+Route::get('admin/homework/grade/{grade}/create', [HomeworkCrudController::class, 'createFromGrade'])->name('grade.homework.create');

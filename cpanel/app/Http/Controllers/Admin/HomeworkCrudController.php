@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\HomeworkRequest;
+use App\Models\Grade;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -52,6 +53,45 @@ class HomeworkCrudController extends CrudController
          */
     }
 
+    public function createFromGrade(Grade $grade){
+
+        $this->crud->setOperation('CreateFromGrade');
+        $this->crud->getRequest()->request->set('grade',$grade);
+
+    }
+
+    protected function setupCreateFromGradeOpertaion(){
+
+        CRUD::setValidation(HomeworkRequest::class);
+
+        CRUD::field('subject')->label('الموضوع');
+        CRUD::field('content')->label('المحتوى');
+        CRUD::addField([
+            'name' => 'file',
+            'type' => 'image',
+            'label' => 'الملف',
+            'upload' => true,
+        ]);
+        CRUD::addField([
+            'name' => 'grade',
+            'label' => 'الصف',
+            'entity' => 'grade',
+            'attribute' => 'name',
+        ]);
+        CRUD::addField([
+            'name' => 'teacher',
+            'entity' => 'teacher',
+            'label' => 'المعلمة',
+            'attribute' => 'name',
+            'type' => 'select2_from_ajax',
+            'data_source' => url('api/teacher'),
+            'minimum_input_length' => 0,
+            'include_all_form_fields' => true,
+            'method' => 'POST',
+            'dependencies' => ['grade'],
+        ]);
+    }
+
     /**
      * Define what happens when the Create operation is loaded.
      *
@@ -60,6 +100,7 @@ class HomeworkCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+
         CRUD::setValidation(HomeworkRequest::class);
 
         CRUD::field('subject')->label('الموضوع');

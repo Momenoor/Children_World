@@ -8,7 +8,7 @@
                     <div class="text-center mb-4">
                         {!! config('backpack.base.project_logo') !!}
                     </div>
-                    <h3 class="text-center mb-4 bg-success p-3">{{ trans('backpack::base.login') }}</h3>
+                    <h3 class="text-center mb-4 bg-light p-3">{{ trans('backpack::base.login') }}</h3>
 
                     <form class="col-md-12 p-t-10" role="form" method="POST" action="{{ route('backpack.auth.login') }}">
                         {!! csrf_field() !!}

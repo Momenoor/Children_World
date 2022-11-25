@@ -14,6 +14,10 @@ class Schedual extends Model implements \Momenoor\LaravelFullcalendar\Event
         'end_date',
     ];
 
+    protected $casts = [
+        'all_day' => 'boolean',
+      ];
+
     protected $fillable = [
         'start_date',
         'end_date',
