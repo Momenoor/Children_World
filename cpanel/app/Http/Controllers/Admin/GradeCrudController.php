@@ -19,6 +19,7 @@ class GradeCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
+
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
      *
@@ -39,11 +40,15 @@ class GradeCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+
         $this->crud->query->withCount(['students', 'teachers']);
         CRUD::column('name')->label('الاسم');
         CRUD::column('students_count')->label('الطلاب');
         CRUD::column('teachers_count')->label('المعلمات');
-        CRUD::column('add_homework')->label('إضافة واجب')->type('custom_html')->value(function ($entry) {
+        CRUD::addButton('line', 'grade_homework', 'view', 'crud::buttons.grade_homework')->before('show');
+        //CRUD::button('add_homework')->stack('line')->before('show')->type('view')->content('crud::buttons.add_grade_homework');
+
+        /* CRUD::column('add_homework')->label('إضافة واجب')->type('custom_html')->value(function ($entry) {
             return '<a href="' . route('grade.homework.create', $entry) . '" class="btn btn-ghost-warning" data-style="zoom">
                 <span class="ladda-label">
                     <i class="la la-plus"></i>
@@ -58,7 +63,7 @@ class GradeCrudController extends CrudController
                     تقييم الطلاب
                 </span>
             </a>'
-        );
+        ); */
         ;
 
 

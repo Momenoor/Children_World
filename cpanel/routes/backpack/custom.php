@@ -25,4 +25,15 @@ Route::group([
     Route::crud('teacher', 'TeacherCrudController');
     Route::crud('user', 'UserCrudController');
     Route::crud('schedual', 'SchedualCrudController');
+/*
+    Route::get('homework/{grade}/grade-homework', [
+        'as' => 'homework.gradeHomework',
+        'uses' => 'HomeworkCrudController@gradeHomework',
+        'operation' => 'gradeHomework',
+    ]);
+    Route::post('homework/{grade}/grade-homework', [
+        'as' => 'homework.storeGradeHomework',
+        'uses' => 'HomeworkCrudController@storeGradeHomework',
+        'operation' => 'gadeHomework',
+    ]); */
 }); // this should be the absolute last line of this file

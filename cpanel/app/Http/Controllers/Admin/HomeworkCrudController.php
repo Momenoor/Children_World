@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Operations\GradeHomeworkOperation;
 use App\Http\Requests\HomeworkRequest;
 use App\Models\Grade;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
@@ -19,6 +20,7 @@ class HomeworkCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use GradeHomeworkOperation;
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -42,7 +44,7 @@ class HomeworkCrudController extends CrudController
     {
         CRUD::column('subject')->label('الموضوع');
         CRUD::column('content')->label('المحتوى');
-        CRUD::column('file')->type('image')->label('الملف')->wrapper(['class'=>'border']);
+        CRUD::column('file')->type('image')->label('الملف')->wrapper(['class' => 'border']);
         CRUD::column('grade')->label('الصف');
         CRUD::column('teacher')->label('المعلمة')->attribute('name');
 
@@ -53,44 +55,35 @@ class HomeworkCrudController extends CrudController
          */
     }
 
-    public function createFromGrade(Grade $grade){
-
-        $this->crud->setOperation('CreateFromGrade');
-        $this->crud->getRequest()->request->set('grade',$grade);
-
-    }
-
-    protected function setupCreateFromGradeOpertaion(){
-
-        CRUD::setValidation(HomeworkRequest::class);
-
-        CRUD::field('subject')->label('الموضوع');
-        CRUD::field('content')->label('المحتوى');
-        CRUD::addField([
-            'name' => 'file',
-            'type' => 'image',
-            'label' => 'الملف',
-            'upload' => true,
-        ]);
-        CRUD::addField([
-            'name' => 'grade',
-            'label' => 'الصف',
-            'entity' => 'grade',
-            'attribute' => 'name',
-        ]);
-        CRUD::addField([
-            'name' => 'teacher',
-            'entity' => 'teacher',
-            'label' => 'المعلمة',
-            'attribute' => 'name',
-            'type' => 'select2_from_ajax',
-            'data_source' => url('api/teacher'),
-            'minimum_input_length' => 0,
-            'include_all_form_fields' => true,
-            'method' => 'POST',
-            'dependencies' => ['grade'],
-        ]);
-    }
+    /* protected function setupCreateFromGradeDefaults(){
+    CRUD::setValidation(HomeworkRequest::class);
+    CRUD::field('subject')->label('الموضوع');
+    CRUD::field('content')->label('المحتوى');
+    CRUD::addField([
+    'name' => 'file',
+    'type' => 'image',
+    'label' => 'الملف',
+    'upload' => true,
+    ]);
+    CRUD::addField([
+    'name' => 'grade',
+    'label' => 'الصف',
+    'entity' => 'grade',
+    'attribute' => 'name',
+    ]);
+    CRUD::addField([
+    'name' => 'teacher',
+    'entity' => 'teacher',
+    'label' => 'المعلمة',
+    'attribute' => 'name',
+    'type' => 'select2_from_ajax',
+    'data_source' => url('api/teacher'),
+    'minimum_input_length' => 0,
+    'include_all_form_fields' => true,
+    'method' => 'POST',
+    'dependencies' => ['grade'],
+    ]);
+    } */
 
     /**
      * Define what happens when the Create operation is loaded.
@@ -111,24 +104,52 @@ class HomeworkCrudController extends CrudController
             'label' => 'الملف',
             'upload' => true,
         ]);
-        CRUD::addField([
-            'name' => 'grade',
-            'label' => 'الصف',
-            'entity' => 'grade',
-            'attribute' => 'name',
-        ]);
-        CRUD::addField([
-            'name' => 'teacher',
-            'entity' => 'teacher',
-            'label' => 'المعلمة',
-            'attribute' => 'name',
-            'type' => 'select2_from_ajax',
-            'data_source' => url('api/teacher'),
-            'minimum_input_length' => 0,
-            'include_all_form_fields' => true,
-            'method' => 'POST',
-            'dependencies' => ['grade'],
-        ]);
+        if (backpack_user()->hasRole('admin')) {
+            CRUD::addField([
+                'name' => 'grade',
+                'label' => 'الصف',
+                'entity' => 'grade',
+                'attribute' => 'name',
+            ]);
+            CRUD::addField([
+                'name' => 'teacher',
+                'entity' => 'teacher',
+                'label' => 'المعلمة',
+                'attribute' => 'name',
+                'type' => 'select2_from_ajax',
+                'data_source' => url('api/teacher'),
+                'minimum_input_length' => 0,
+                'include_all_form_fields' => true,
+                'method' => 'POST',
+                'dependencies' => ['grade'],
+            ]);
+        }
+        if (backpack_user()->hasRole('teacher')) {
+            CRUD::addField([
+                'name' => 'grade_name',
+                'label' => 'الصف',
+                'type' => 'plain',
+                'value' => backpack_user()->teacher->grade->name,
+            ]);
+            CRUD::addField([
+                'name' => 'teacher_name',
+                'label' => 'المعلمة',
+                'type' => 'plain',
+                'value' => backpack_user()->name,
+            ]);
+            CRUD::addField([
+                'name' => 'grade',
+                'label' => 'الصف',
+                'type' => 'hidden',
+                'value' => backpack_user()->teacher->grade->id,
+            ]);
+            CRUD::addField([
+                'name' => 'teacher',
+                'label' => 'المعلمة',
+                'type' => 'hidden',
+                'value' => backpack_user()->teacher->id,
+            ]);
+        }
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

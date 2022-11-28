@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function __invoke(Request $request){
+    public function __invoke(Request $request)
+    {
 
         $search_term = $request->input('q'); // the search term in the select2 input
 
@@ -19,20 +20,22 @@ class TeacherController extends Controller
         // you still have the original request as `request('form')`
         $form = backpack_form_input();
 
-        $options = Teacher::query()->select('teachers.id','users.name','teachers.user_id')->join('users','teachers.user_id','users.id');
+        $grade = $form['grade'] ?? $request->input('grade') ?? null;
+
+        $options = Teacher::query()->select('teachers.id', 'users.name', 'teachers.user_id')->join('users', 'teachers.user_id', 'users.id');
 
         // if no category has been selected, show no options
-        if (! $form['grade']) {
+        if (!$grade) {
             return [];
         }
 
         // if a category has been selected, only show articles in that category
-        if ($form['grade']) {
-            $options = $options->where('grade_id', $form['grade']);
+        if ($grade) {
+            $options = $options->where('grade_id', $grade);
         }
 
         if ($search_term) {
-            $results = $options->where('users.name', 'LIKE', '%'.$search_term.'%')->paginate(10);
+            $results = $options->where('users.name', 'LIKE', '%' . $search_term . '%')->paginate(10);
         } else {
             $results = $options->paginate(10);
         }
