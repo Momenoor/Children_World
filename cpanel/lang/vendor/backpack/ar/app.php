@@ -40,7 +40,7 @@ return [
     'Please select a chat to start messaging' => 'برجاء اختيار محادثة لبدء المراسلة',
     'change' => 'تغيير',
     'Search' => 'إبحث',
-    '' => '',
+    'Nothing shared yet' => 'لم يتم مشاركة أي ملفات بعد',
     '' => '',
     '' => '',
 ];
