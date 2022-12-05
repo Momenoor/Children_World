@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class HomeworkController extends Controller
 {
-    public function __invoke(Request $request){
+    public function __invoke(Request $request)
+    {
 
         $search_term = $request->input('q'); // the search term in the select2 input
 
@@ -21,22 +22,25 @@ class HomeworkController extends Controller
 
         $options = Homework::query();
 
+        $grade = $form['grade'] ?? $request->input('grade') ?? null;
+        $teacher = $form['teacher'] ?? $request->input('teacher') ?? null;
+
         // if no category has been selected, show no options
-        if (! $form['teacher'] || ! $form['grade']) {
+        if (!$teacher || !$grade) {
             return [];
         }
 
         // if a category has been selected, only show articles in that category
-        if ($form['grade']) {
-            $options = $options->where('grade_id', $form['grade']);
+        if ($grade) {
+            $options = $options->where('grade_id', $grade);
         }
 
-        if ($form['teacher']) {
-            $options = $options->where('teacher_id', $form['teacher']);
+        if ($teacher) {
+            $options = $options->where('teacher_id', $teacher);
         }
 
         if ($search_term) {
-            $results = $options->where('homework.subject', 'LIKE', '%'.$search_term.'%')->paginate(10);
+            $results = $options->where('homework.subject', 'LIKE', '%' . $search_term . '%')->paginate(10);
         } else {
             $results = $options->paginate(10);
         }

@@ -21,14 +21,16 @@ class StudentController extends Controller
 
         $options = Student::query()->select('students.id','users.name','students.user_id')->join('users','students.user_id','users.id');
 
+        $grade = $form['grade'] ?? $request->input('grade') ?? null;
+
         // if no category has been selected, show no options
-        if (! $form['grade']) {
+        if (!$grade) {
             return [];
         }
 
         // if a category has been selected, only show articles in that category
-        if ($form['grade']) {
-            $options = $options->where('grade_id', $form['grade']);
+        if ($grade) {
+            $options = $options->where('grade_id', $grade);
         }
 
         if ($search_term) {

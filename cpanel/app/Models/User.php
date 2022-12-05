@@ -46,7 +46,7 @@ class User extends Authenticatable
         'teacher',
     ]; */
 
-    public const ADMIN = 0;
+    /* public const ADMIN = 0;
     public const TEACHER = 1;
     public const STUDENT = 2;
 
@@ -65,7 +65,7 @@ class User extends Authenticatable
     {
         return (int)$this->role === static::STUDENT;
     }
-
+ */
     public function student()
     {
         return $this->hasOne(Student::class);
@@ -76,12 +76,7 @@ class User extends Authenticatable
         return $this->hasOne(Teacher::class);
     }
 
-    public function setPasswordAttribute($input)
-    {
-        $this->attributes['password'] = Hash::make($input);
-    }
-
-    public function getRoleNameAttribute()
+    /* public function getRoleNameAttribute()
     {
         $role = [
             static::ADMIN => 'مدير',
@@ -89,15 +84,6 @@ class User extends Authenticatable
             static::STUDENT => 'طالب',
         ];
         return $role[$this->role];
-    }
+    } */
 
-    public function getRoleKeyAttribute()
-    {
-        return strtolower(array_search(
-            $this->role,
-            (new ReflectionClass(self::class))
-                ->getConstants(),
-            false
-        ));
-    }
 }

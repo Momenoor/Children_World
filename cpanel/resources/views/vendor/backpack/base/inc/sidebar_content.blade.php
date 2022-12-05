@@ -19,3 +19,5 @@
 
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('schedual') }}"><i class="nav-icon la la-question"></i> Scheduals</a></li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('chatify') }}"><i class="nav-icon la la-question"></i> Chat</a></li>
+
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('log') }}'><i class='nav-icon la la-terminal'></i> Logs</a></li>
