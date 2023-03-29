@@ -1,0 +1,30 @@
+{
+    "name": "momenoor/laravel-fullcalendar",
+    "description": "Laravel helper for FullCalendar.io",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [{
+        "name": "Momen Noor",
+        "email": "momen.noor@gmail.com"
+    }],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.8.*|^6|^7|^8|^9"
+    },
+    "autoload": {
+        "psr-0": {
+            "Momenoor\\LaravelFullcalendar": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Momenoor\\LaravelFullcalendar\\ServiceProvider"
+            ],
+            "aliases": {
+                "Calendar": "Momenoor\\LaravelFullcalendar\\Facades\\Calendar"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}
